@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAZIMXLIVE | Premium RGB Panel</title>
+    <title>NAZIMXLIVE | Premium RGB Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
         :root { --main: #ff6600; --bg: #050505; --error: #ff0000; --ff-glow: #00f2ff; }
         
-        /* RGB & Animation Effects */
+        /* আরজিবি এনিমেশন */
         @keyframes rgbText {
             0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
             33% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
@@ -26,31 +26,34 @@
             75% { transform: translateX(8px); }
         }
 
+        /* কাস্টম কার্সার */
         * { cursor: none !important; }
         #cursor { width: 10px; height: 10px; background: white; border-radius: 50%; position: fixed; pointer-events: none; z-index: 100000; }
         #cursor-outline { width: 35px; height: 35px; border: 1px solid white; border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transition: 0.15s ease-out; }
 
         body { background: var(--bg); color: white; font-family: 'Poppins', sans-serif; margin: 0; overflow-x: hidden; }
 
-        /* Login Section */
-        #login-screen { height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        /* লগইন স্ক্রিন */
+        #login-screen { height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; background: #000; }
         .login-box { 
             background: rgba(10, 10, 10, 0.98); padding: 40px; border-radius: 20px; 
             border: 2px solid #333; text-align: center; width: 100%; max-width: 380px;
-            animation: rgbBorder 5s linear infinite;
+            animation: rgbBorder 5s linear infinite; transition: 0.3s;
         }
         .login-box.error-shake { animation: shake 0.2s ease-in-out 2; border-color: var(--error); }
         .rgb-title { font-family: 'Orbitron'; font-size: 24px; letter-spacing: 4px; margin-bottom: 30px; animation: rgbText 5s linear infinite; }
-        input { width: 100%; padding: 14px; margin-bottom: 20px; background: #000; border: 1px solid #333; color: white; border-radius: 10px; font-family: 'Orbitron'; outline: none; box-sizing: border-box; text-align: center; }
-        #error-msg { color: var(--error); font-family: 'Orbitron'; font-size: 10px; margin-top: -10px; margin-bottom: 15px; display: none; text-shadow: 0 0 5px var(--error); }
-        .btn-main { background: white; color: black; border: none; padding: 15px; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; transition: 0.3s; }
-        .btn-main:hover { background: var(--main); color: white; }
-
-        /* Dashboard Section */
-        #main-panel { display: none; padding: 40px 15px; text-align: center; }
-        .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--main); box-shadow: 0 0 25px var(--main); margin-bottom: 10px; }
         
-        /* List Section UI */
+        input { width: 100%; padding: 14px; margin-bottom: 20px; background: #000; border: 1px solid #333; color: white; border-radius: 10px; font-family: 'Orbitron'; outline: none; box-sizing: border-box; text-align: center; }
+        #error-msg { color: var(--error); font-family: 'Orbitron'; font-size: 11px; margin-top: -10px; margin-bottom: 15px; display: none; text-shadow: 0 0 5px var(--error); }
+        
+        .btn-main { background: white; color: black; border: none; padding: 15px; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; transition: 0.3s; }
+        .btn-main:hover { background: var(--main); color: white; box-shadow: 0 0 20px var(--main); }
+
+        /* ড্যাশবোর্ড প্যানেল */
+        #main-panel { display: none; padding: 40px 15px; text-align: center; }
+        .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--main); box-shadow: 0 0 25px var(--main); margin-bottom: 15px; object-fit: cover; }
+        
+        /* লিস্ট স্টাইল */
         .list-container { max-width: 600px; margin: 30px auto; text-align: left; }
         .list-title { font-family: 'Orbitron'; color: var(--main); font-size: 14px; margin-bottom: 15px; letter-spacing: 2px; border-left: 4px solid var(--main); padding-left: 10px; }
         
@@ -63,20 +66,16 @@
         }
         .panel-item:hover { background: rgba(255, 102, 0, 0.15); border-color: var(--main); transform: scale(1.02); }
         
-        /* --- বিশেষ সুন্দর ফন্ট স্টাইল (FF PANEL) --- */
+        /* FF Special Glowing Fonts */
         .ff-special { 
-            font-weight: 700; 
-            letter-spacing: 1.5px;
-            color: #fff;
+            font-weight: 700; letter-spacing: 1.5px; color: #fff;
             text-shadow: 0 0 8px rgba(0, 242, 255, 0.6);
             border-left: 5px solid var(--ff-glow);
             background: linear-gradient(90deg, rgba(0, 242, 255, 0.1), transparent);
         }
-        .ff-special:hover {
-            border-color: #fff;
-            text-shadow: 0 0 15px var(--ff-glow);
-        }
+        .ff-special:hover { border-color: #fff; text-shadow: 0 0 15px var(--ff-glow); }
 
+        /* রেসপন্সিভনেস */
         @media (max-width: 768px) { #cursor, #cursor-outline { display: none; } * { cursor: auto !important; } }
     </style>
 </head>
@@ -88,22 +87,22 @@
     <div id="login-screen">
         <div class="login-box" id="lBox">
             <div class="rgb-title">NAZIM PANEL</div>
-            <input type="text" id="user" placeholder="USERNAME">
+            <input type="text" id="user" placeholder="USERNAME" autocomplete="off">
             <input type="password" id="pass" placeholder="PASSWORD">
-            <div id="error-msg">SYSTEM ERROR: INVALID KEY</div>
+            <div id="error-msg">INVALID ACCESS: WRONG PASSWORD</div>
             <button class="btn-main" onclick="startSystem()">ACCESS LOGIN</button>
         </div>
     </div>
 
     <div id="main-panel">
-        <img src="profile.jpg" class="profile-img" alt="Nazim">
+        <img src="profile.jpg" class="profile-img" alt="Nazim Profile">
         <h2 style="font-family: 'Orbitron'; letter-spacing: 3px; margin-bottom: 30px;">NAZIM <span style="color:var(--main)">XLIVE</span></h2>
         
         <div class="list-container">
             <div class="list-title">FREE FIRE PANEL</div>
             <div class="panel-list">
+                <a href="FF_PANEL_RED_1.apk" download class="panel-item ff-special"><span>🎯 AUTO HEADSHOT CONFIG</span></a>
                 <a href="#" class="panel-item ff-special"><span>⚡ FREE PANEL V1 (LATEST)</span></a>
-                <a href="#" class="panel-item ff-special"><span>🎯 AUTO HEADSHOT CONFIG</span></a>
                 <a href="#" class="panel-item ff-special"><span>🚀 SENSITIVITY BOOSTER</span></a>
             </div>
 
@@ -120,6 +119,7 @@
     </div>
 
     <script>
+        // কার্সার ইফেক্ট (পিসির জন্য)
         if (window.innerWidth > 768) {
             const cursor = document.getElementById('cursor');
             const cursorOutline = document.getElementById('cursor-outline');
@@ -129,6 +129,7 @@
             });
         }
 
+        // লগইন লজিক (User: nazim, Pass: nazim)
         function startSystem() {
             const u = document.getElementById('user').value;
             const p = document.getElementById('pass').value;
@@ -138,6 +139,7 @@
             if(u === "nazim" && p === "nazim") {
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('main-panel').style.display = 'block';
+                document.body.style.overflowY = "auto";
             } else {
                 errorMsg.style.display = 'block';
                 lBox.classList.add('error-shake');
