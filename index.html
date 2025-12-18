@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAZIMXLIVE | Premium RGB Admin</title>
+    <title>NAZIMXLIVE | Ultimate Search Panel</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
         :root { --main: #ff6600; --bg: #050505; --error: #ff0000; --ff-glow: #00f2ff; }
         
-        /* আরজিবি এনিমেশন */
+        /* আরজিবি ও শেক এনিমেশন */
         @keyframes rgbText {
             0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
             33% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
@@ -26,61 +26,61 @@
             75% { transform: translateX(8px); }
         }
 
-        /* কাস্টম কার্সার */
         * { cursor: none !important; }
         #cursor { width: 10px; height: 10px; background: white; border-radius: 50%; position: fixed; pointer-events: none; z-index: 100000; }
         #cursor-outline { width: 35px; height: 35px; border: 1px solid white; border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transition: 0.15s ease-out; }
 
-        body { background: var(--bg); color: white; font-family: 'Poppins', sans-serif; margin: 0; overflow-x: hidden; }
+        body { background: var(--bg); color: white; font-family: 'Poppins', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* লগইন স্ক্রিন */
+        /* লগইন সেকশন */
         #login-screen { height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; background: #000; }
         .login-box { 
             background: rgba(10, 10, 10, 0.98); padding: 40px; border-radius: 20px; 
             border: 2px solid #333; text-align: center; width: 100%; max-width: 380px;
-            animation: rgbBorder 5s linear infinite; transition: 0.3s;
+            animation: rgbBorder 5s linear infinite;
         }
         .login-box.error-shake { animation: shake 0.2s ease-in-out 2; border-color: var(--error); }
         .rgb-title { font-family: 'Orbitron'; font-size: 24px; letter-spacing: 4px; margin-bottom: 30px; animation: rgbText 5s linear infinite; }
         
         input { width: 100%; padding: 14px; margin-bottom: 20px; background: #000; border: 1px solid #333; color: white; border-radius: 10px; font-family: 'Orbitron'; outline: none; box-sizing: border-box; text-align: center; }
         #error-msg { color: var(--error); font-family: 'Orbitron'; font-size: 11px; margin-top: -10px; margin-bottom: 15px; display: none; text-shadow: 0 0 5px var(--error); }
-        
         .btn-main { background: white; color: black; border: none; padding: 15px; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; transition: 0.3s; }
-        .btn-main:hover { background: var(--main); color: white; box-shadow: 0 0 20px var(--main); }
-
-        /* সার্চ বার স্টাইল */
-        .search-container { max-width: 600px; margin: 20px auto; padding: 0 15px; }
-        #listSearch { 
-            width: 100%; padding: 15px; background: rgba(255,255,255,0.05); 
-            border: 1px solid var(--main); border-radius: 30px; color: white; 
-            font-family: 'Orbitron'; font-size: 12px; text-align: left; padding-left: 25px;
-            box-shadow: 0 0 15px rgba(255, 102, 0, 0.2);
-        }
-        #listSearch:focus { box-shadow: 0 0 25px var(--main); outline: none; }
+        .btn-main:hover { background: var(--main); color: white; }
 
         /* ড্যাশবোর্ড প্যানেল */
         #main-panel { display: none; padding: 40px 15px; text-align: center; }
-        .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--main); box-shadow: 0 0 25px var(--main); margin-bottom: 15px; object-fit: cover; }
+        .profile-img { width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--main); box-shadow: 0 0 20px var(--main); margin-bottom: 10px; object-fit: cover; }
         
-        .list-container { max-width: 600px; margin: 10px auto; text-align: left; }
-        .list-title { font-family: 'Orbitron'; color: var(--main); font-size: 14px; margin-bottom: 15px; letter-spacing: 2px; border-left: 4px solid var(--main); padding-left: 10px; margin-top: 30px; }
+        /* প্রিমিয়াম সার্চ বার */
+        .search-wrapper { position: sticky; top: 10px; z-index: 100; max-width: 600px; margin: 0 auto 30px; }
+        #listSearch { 
+            width: 100%; padding: 15px 20px; background: #111; border: 1px solid #444; 
+            border-radius: 50px; color: #fff; font-family: 'Poppins'; font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: 0.3s; text-align: left;
+        }
+        #listSearch:focus { border-color: var(--main); box-shadow: 0 0 20px rgba(255, 102, 0, 0.4); }
+
+        /* লিস্ট ডিজাইন */
+        .list-container { max-width: 600px; margin: 0 auto; text-align: left; }
+        .section-header { font-family: 'Orbitron'; color: var(--main); font-size: 13px; margin: 25px 0 15px; letter-spacing: 2px; border-left: 3px solid var(--main); padding-left: 10px; }
         
-        .panel-list { list-style: none; padding: 0; margin-bottom: 20px; }
+        .panel-list { list-style: none; padding: 0; }
         .panel-item { 
-            background: rgba(255,255,255,0.03); margin-bottom: 12px; padding: 18px 25px; 
-            border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.03); margin-bottom: 12px; padding: 18px; 
+            border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);
             display: flex; justify-content: space-between; align-items: center;
-            transition: 0.4s; text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 13px;
+            transition: 0.3s; text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 12px;
         }
-        .panel-item:hover { background: rgba(255, 102, 0, 0.15); border-color: var(--main); transform: scale(1.02); }
+        .panel-item:hover { background: rgba(255, 102, 0, 0.1); border-color: var(--main); transform: scale(1.02); }
         
+        /* FF Special Glow */
         .ff-special { 
-            font-weight: 700; letter-spacing: 1.5px; color: #fff;
-            text-shadow: 0 0 8px rgba(0, 242, 255, 0.6);
-            border-left: 5px solid var(--ff-glow);
-            background: linear-gradient(90deg, rgba(0, 242, 255, 0.1), transparent);
+            font-weight: 700; color: #fff; text-shadow: 0 0 8px var(--ff-glow);
+            border-left: 5px solid var(--ff-glow); background: linear-gradient(90deg, rgba(0, 242, 255, 0.05), transparent);
         }
+
+        /* নো রেজাল্ট মেসেজ */
+        #no-results { display: none; color: #555; font-family: 'Orbitron'; margin-top: 50px; font-size: 14px; }
 
         @media (max-width: 768px) { #cursor, #cursor-outline { display: none; } * { cursor: auto !important; } }
     </style>
@@ -95,68 +95,74 @@
             <div class="rgb-title">NAZIM PANEL</div>
             <input type="text" id="user" placeholder="USERNAME" autocomplete="off">
             <input type="password" id="pass" placeholder="PASSWORD">
-            <div id="error-msg">INVALID ACCESS: WRONG PASSWORD</div>
+            <div id="error-msg">INVALID ACCESS: TRY AGAIN</div>
             <button class="btn-main" onclick="startSystem()">ACCESS LOGIN</button>
         </div>
     </div>
 
     <div id="main-panel">
-        <img src="profile.jpg" class="profile-img" alt="Nazim Profile">
+        <img src="profile.jpg" class="profile-img" alt="Nazim">
         <h2 style="font-family: 'Orbitron'; letter-spacing: 3px; margin-bottom: 20px;">NAZIM <span style="color:var(--main)">XLIVE</span></h2>
         
-        <div class="search-container">
-            <input type="text" id="listSearch" placeholder="SEARCH PANEL OR LINKS..." onkeyup="searchList()">
+        <div class="search-wrapper">
+            <input type="text" id="listSearch" placeholder="Search here (ex: Youtube, Config...)" onkeyup="youtubeSearch()">
         </div>
 
-        <div class="list-container">
-            <div id="ff-section">
-                <div class="list-title">FREE FIRE PANEL</div>
+        <div class="list-container" id="listBody">
+            <div class="section-group">
+                <div class="section-header">FREE FIRE PANEL</div>
                 <div class="panel-list">
-                    <a href="FF_PANEL_RED_1.apk" download class="panel-item ff-special searchItem"><span>🎯 AUTO HEADSHOT CONFIG</span></a>
-                    <a href="#" class="panel-item ff-special searchItem"><span>⚡ FREE PANEL V1 (LATEST)</span></a>
-                    <a href="#" class="panel-item ff-special searchItem"><span>🚀 SENSITIVITY BOOSTER</span></a>
+                    <a href="FF_PANEL_RED_1.apk" download class="panel-item ff-special search-card"><span>🎯 AUTO HEADSHOT CONFIG</span></a>
+                    <a href="#" class="panel-item ff-special search-card"><span>⚡ FREE PANEL V1 (LATEST)</span></a>
+                    <a href="#" class="panel-item ff-special search-card"><span>🚀 SENSITIVITY BOOSTER</span></a>
                 </div>
             </div>
 
-            <div id="social-section">
-                <div class="list-title">MY SOCIAL MEDIA LINK</div>
+            <div class="section-group">
+                <div class="section-header">MY SOCIAL MEDIA LINK</div>
                 <div class="panel-list">
-                    <a href="https://www.youtube.com/@XTR_NAZIM" target="_blank" class="panel-item searchItem"><span>YOUTUBE CHANNEL</span></a>
-                    <a href="https://www.facebook.com/nazimontop" target="_blank" class="panel-item searchItem"><span>FACEBOOK PAGE</span></a>
-                    <a href="https://wa.me/8801XXXXXXXXX" target="_blank" class="panel-item searchItem"><span>WHATSAPP GROUP</span></a>
-                    <a href="https://www.tiktok.com/@esports_x_logo" target="_blank" class="panel-item searchItem"><span>TIKTOK PROFILE</span></a>
+                    <a href="https://www.youtube.com/@XTR_NAZIM" target="_blank" class="panel-item search-card"><span>YOUTUBE CHANNEL</span></a>
+                    <a href="https://www.facebook.com/nazimontop" target="_blank" class="panel-item search-card"><span>FACEBOOK PAGE</span></a>
+                    <a href="https://wa.me/8801XXXXXXXXX" target="_blank" class="panel-item search-card"><span>WHATSAPP GROUP</span></a>
+                    <a href="https://www.tiktok.com/@esports_x_logo" target="_blank" class="panel-item search-card"><span>TIKTOK PROFILE</span></a>
                 </div>
             </div>
+
+            <div id="no-results">NO PANEL FOUND!</div>
             
-            <button class="btn-main" style="background:transparent; color:red; border:1px solid red; margin-top: 20px;" onclick="location.reload()">LOGOUT SYSTEM</button>
+            <button class="btn-main" style="background:transparent; color:red; border:1px solid red; margin-top: 50px;" onclick="location.reload()">LOGOUT</button>
         </div>
     </div>
 
     <script>
-        // সার্চ ফাংশন
-        function searchList() {
+        // ইউটিউব স্টাইল সার্চ লজিক
+        function youtubeSearch() {
             let input = document.getElementById('listSearch').value.toLowerCase();
-            let items = document.getElementsByClassName('searchItem');
-            
-            for (let i = 0; i < items.length; i++) {
-                let text = items[i].innerText.toLowerCase();
-                if (text.includes(input)) {
-                    items[i].style.display = "flex";
+            let cards = document.getElementsByClassName('search-card');
+            let groups = document.getElementsByClassName('section-group');
+            let foundAny = false;
+
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].innerText.toLowerCase();
+                if (title.includes(input)) {
+                    cards[i].style.display = "flex";
+                    foundAny = true;
                 } else {
-                    items[i].style.display = "none";
+                    cards[i].style.display = "none";
                 }
             }
+
+            // যদি কোনো সেকশনে সব আইটেম হাইড হয়ে যায়, তবে ওই সেকশনের নামও হাইড হবে
+            for (let j = 0; j < groups.length; j++) {
+                let itemsInGroup = groups[j].querySelectorAll('.search-card');
+                let visibleItems = Array.from(itemsInGroup).filter(item => item.style.display !== 'none');
+                groups[j].style.display = visibleItems.length > 0 ? "block" : "none";
+            }
+
+            document.getElementById('no-results').style.display = foundAny ? "none" : "block";
         }
 
-        if (window.innerWidth > 768) {
-            const cursor = document.getElementById('cursor');
-            const cursorOutline = document.getElementById('cursor-outline');
-            window.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
-                cursorOutline.animate({ left: e.clientX - 17 + 'px', top: e.clientY - 17 + 'px' }, { duration: 400, fill: "forwards" });
-            });
-        }
-
+        // লগইন ফাংশন
         function startSystem() {
             const u = document.getElementById('user').value;
             const p = document.getElementById('pass').value;
@@ -168,6 +174,16 @@
                 document.getElementById('lBox').classList.add('error-shake');
                 setTimeout(() => { document.getElementById('lBox').classList.remove('error-shake'); }, 400);
             }
+        }
+
+        // কার্সার (পিসি)
+        if (window.innerWidth > 768) {
+            const cursor = document.getElementById('cursor');
+            const cursorOutline = document.getElementById('cursor-outline');
+            window.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+                cursorOutline.animate({ left: e.clientX - 17 + 'px', top: e.clientY - 17 + 'px' }, { duration: 400, fill: "forwards" });
+            });
         }
     </script>
 </body>
