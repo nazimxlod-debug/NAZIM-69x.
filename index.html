@@ -3,30 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAZIMXLIVE | RGB Premium Admin</title>
+    <title>NAZIMXLIVE | Premium RGB Panel</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
-        :root { --main: #ff6600; --bg: #050505; --error: #ff0000; }
+        :root { --main: #ff6600; --bg: #050505; --error: #ff0000; --ff-glow: #ffcc00; }
         
-        /* RGB Animations */
+        /* RGB & Animation Effects */
         @keyframes rgbText {
             0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
             33% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
             66% { color: #0000ff; text-shadow: 0 0 10px #0000ff; }
             100% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
         }
-
         @keyframes rgbBorder {
             0% { border-color: #ff0000; box-shadow: 0 0 15px #ff000044; }
-            33% { border-color: #00ff00; box-shadow: 0 0 15px #00ff0044; }
-            66% { border-color: #0000ff; box-shadow: 0 0 15px #0000ff44; }
+            50% { border-color: #00ff00; box-shadow: 0 0 15px #00ff0044; }
             100% { border-color: #ff0000; box-shadow: 0 0 15px #ff000044; }
         }
-
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
         }
 
         * { cursor: none !important; }
@@ -35,48 +32,41 @@
 
         body { background: var(--bg); color: white; font-family: 'Poppins', sans-serif; margin: 0; overflow-x: hidden; }
 
-        /* Login Screen */
-        #login-screen { 
-            height: 100vh; display: flex; justify-content: center; align-items: center; 
-            padding: 20px; background: #000;
-        }
+        /* Login Section */
+        #login-screen { height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
         .login-box { 
-            background: rgba(10, 10, 10, 0.95); padding: 40px; border-radius: 20px; 
-            border: 2px solid #333; text-align: center; 
-            width: 100%; max-width: 380px; box-shadow: 0 0 50px rgba(0,0,0,1);
+            background: rgba(10, 10, 10, 0.98); padding: 40px; border-radius: 20px; 
+            border: 2px solid #333; text-align: center; width: 100%; max-width: 380px;
             animation: rgbBorder 5s linear infinite;
-            transition: 0.3s;
         }
-        
         .login-box.error-shake { animation: shake 0.2s ease-in-out 2; border-color: var(--error); }
+        .rgb-title { font-family: 'Orbitron'; font-size: 24px; letter-spacing: 4px; margin-bottom: 30px; animation: rgbText 5s linear infinite; }
+        input { width: 100%; padding: 14px; margin-bottom: 20px; background: #000; border: 1px solid #333; color: white; border-radius: 10px; font-family: 'Orbitron'; outline: none; box-sizing: border-box; text-align: center; }
+        #error-msg { color: var(--error); font-family: 'Orbitron'; font-size: 10px; margin-top: -10px; margin-bottom: 15px; display: none; text-shadow: 0 0 5px var(--error); }
+        .btn-main { background: white; color: black; border: none; padding: 15px; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; transition: 0.3s; }
+        .btn-main:hover { background: var(--main); color: white; }
 
-        .rgb-title { font-family: 'Orbitron'; font-size: 26px; letter-spacing: 5px; margin-bottom: 30px; animation: rgbText 5s linear infinite; }
-
-        input { 
-            width: 100%; padding: 14px; margin-bottom: 20px; background: #000; 
-            border: 1px solid #333; color: white; border-radius: 10px; 
-            font-family: 'Orbitron'; outline: none; box-sizing: border-box; text-align: center;
-        }
-        input:focus { animation: rgbBorder 2s linear infinite; background: #050505; }
-
-        /* Error Message Style */
-        #error-msg { 
-            color: var(--error); font-family: 'Orbitron'; font-size: 10px; 
-            margin-top: -10px; margin-bottom: 15px; display: none;
-            text-shadow: 0 0 5px var(--error);
-        }
-
-        .btn-main {
-            background: white; color: black; border: none; padding: 15px 40px; 
-            font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%;
-        }
-
-        /* Dashboard Styles */
+        /* Dashboard Section */
         #main-panel { display: none; padding: 40px 15px; text-align: center; }
-        .profile-img { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--main); box-shadow: 0 0 30px var(--main); object-fit: cover; margin-bottom: 15px; }
-        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; max-width: 900px; margin: 30px auto; }
-        .card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 11px; transition: 0.3s; }
-        .card:hover { border-color: var(--main); background: rgba(255,102,0,0.1); }
+        .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--main); box-shadow: 0 0 25px var(--main); margin-bottom: 10px; }
+        
+        /* List Section UI */
+        .list-container { max-width: 600px; margin: 30px auto; text-align: left; }
+        .list-title { font-family: 'Orbitron'; color: var(--main); font-size: 14px; margin-bottom: 15px; letter-spacing: 2px; border-left: 4px solid var(--main); padding-left: 10px; }
+        
+        .panel-list { list-style: none; padding: 0; margin-bottom: 40px; }
+        .panel-item { 
+            background: rgba(255,255,255,0.03); margin-bottom: 10px; padding: 15px 20px; 
+            border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
+            display: flex; justify-content: space-between; align-items: center;
+            transition: 0.3s; text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 12px;
+        }
+        .panel-item:hover { background: rgba(255, 102, 0, 0.1); border-color: var(--main); transform: translateX(10px); }
+        .panel-item i { color: var(--main); font-size: 18px; }
+        
+        /* FF Special Style */
+        .ff-item { border-left: 5px solid var(--ff-glow); box-shadow: inset 0 0 10px rgba(255,204,0,0.1); }
+        .ff-item:hover { border-color: var(--ff-glow); background: rgba(255,204,0,0.05); }
 
         @media (max-width: 768px) { #cursor, #cursor-outline { display: none; } * { cursor: auto !important; } }
     </style>
@@ -88,34 +78,40 @@
 
     <div id="login-screen">
         <div class="login-box" id="lBox">
-            <div class="rgb-title">ACCESS PANEL</div>
-            <input type="text" id="user" placeholder="USERNAME" autocomplete="off">
+            <div class="rgb-title">NAZIM PANEL</div>
+            <input type="text" id="user" placeholder="USERNAME">
             <input type="password" id="pass" placeholder="PASSWORD">
-            
-            <div id="error-msg">INVALID ACCESS KEY! TRY AGAIN</div>
-            
-            <button class="btn-main" onclick="startSystem()">INITIALIZE</button>
+            <div id="error-msg">SYSTEM ERROR: INVALID KEY</div>
+            <button class="btn-main" onclick="startSystem()">ACCESS LOGIN</button>
         </div>
     </div>
 
     <div id="main-panel">
         <img src="profile.jpg" class="profile-img" alt="Nazim">
-        <h2 style="font-family: 'Orbitron'; letter-spacing: 5px;">NAZIM <span style="color:var(--main)">XLIVE</span></h2>
+        <h2 style="font-family: 'Orbitron'; letter-spacing: 3px; margin-bottom: 30px;">NAZIM <span style="color:var(--main)">XLIVE</span></h2>
         
-        <div class="social-grid">
-            <a href="https://www.youtube.com/@XTR_NAZIM" target="_blank" class="card">YOUTUBE</a>
-            <a href="https://www.facebook.com/nazimontop" target="_blank" class="card">FACEBOOK</a>
-            <a href="https://wa.me/8801XXXXXXXXX" target="_blank" class="card">WHATSAPP</a>
-            <a href="#" class="card" onclick="location.reload()">LOGOUT</a>
-        </div>
-        
-        <div style="width:100%; max-width:700px; margin:auto; border:1px solid #333; border-radius:20px; overflow:hidden;">
-            <iframe width="100%" height="350" src="https://www.youtube.com/embed/phep1mEYH7E" frameborder="0" allowfullscreen></iframe>
+        <div class="list-container">
+            <div class="list-title">FREE FIRE PANEL</div>
+            <div class="panel-list">
+                <a href="#" class="panel-item ff-item"><span>FREE PANEL V1 (LATEST)</span> ⚡</a>
+                <a href="#" class="panel-item ff-item"><span>AUTO HEADSHOT CONFIG</span> 🎯</a>
+                <a href="#" class="panel-item ff-item"><span>SENSITIVITY BOOSTER</span> 🚀</a>
+            </div>
+
+            <div class="list-title">MY SOCIAL MEDIA LINK</div>
+            <div class="panel-list">
+                <a href="https://www.youtube.com/@XTR_NAZIM" target="_blank" class="panel-item"><span>YOUTUBE CHANNEL</span></a>
+                <a href="https://www.facebook.com/nazimontop" target="_blank" class="panel-item"><span>FACEBOOK PAGE</span></a>
+                <a href="https://wa.me/8801XXXXXXXXX" target="_blank" class="panel-item"><span>WHATSAPP GROUP</span></a>
+                <a href="https://www.tiktok.com/@esports_x_logo" target="_blank" class="panel-item"><span>TIKTOK PROFILE</span></a>
+            </div>
+            
+            <button class="btn-main" style="background:transparent; color:red; border:1px solid red;" onclick="location.reload()">LOGOUT SYSTEM</button>
         </div>
     </div>
 
     <script>
-        // Cursor Logic
+        // Cursor
         if (window.innerWidth > 768) {
             const cursor = document.getElementById('cursor');
             const cursorOutline = document.getElementById('cursor-outline');
@@ -125,7 +121,7 @@
             });
         }
 
-        // Login Function (nazim / nazim)
+        // Login Logic
         function startSystem() {
             const u = document.getElementById('user').value;
             const p = document.getElementById('pass').value;
@@ -136,14 +132,9 @@
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('main-panel').style.display = 'block';
             } else {
-                // পপ-আপ না এসে এখানে মেসেজ দেখাবে
                 errorMsg.style.display = 'block';
                 lBox.classList.add('error-shake');
-                
-                // ২ সেকেন্ড পর লাল ভাব চলে যাবে কিন্তু মেসেজ থাকবে
-                setTimeout(() => {
-                    lBox.classList.remove('error-shake');
-                }, 500);
+                setTimeout(() => { lBox.classList.remove('error-shake'); }, 400);
             }
         }
     </script>
