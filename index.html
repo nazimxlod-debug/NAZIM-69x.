@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAZIMXLIVE | Ultimate A-Z Panel</title>
+    <title>NAZIMXLIVE | Multi-Login Panel</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { 
             --main: #ff6600; 
@@ -16,10 +17,8 @@
             --neon-yellow: #fefe33;
         }
 
-        /* শুধু স্পন্সরের জন্য RGB */
         @keyframes rgbSponsor {
             0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
-            25% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
             50% { color: #0000ff; text-shadow: 0 0 10px #0000ff; }
             100% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
         }
@@ -43,51 +42,41 @@
             position: fixed; bottom: 20px; left: 20px; z-index: 9999;
             text-decoration: none; background: rgba(0,0,0,0.8);
             padding: 10px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(5px);
         }
-        .sponsor-text {
-            font-family: 'Orbitron'; font-size: 13px; font-weight: 900;
-            letter-spacing: 2px; animation: rgbSponsor 3s linear infinite;
-            display: flex; align-items: center; gap: 8px;
-        }
+        .sponsor-text { font-family: 'Orbitron'; font-size: 13px; font-weight: 900; animation: rgbSponsor 3s linear infinite; display: flex; align-items: center; gap: 8px; }
 
-        /* Login */
+        /* Multi-Login Design */
         #login-screen { height: 100vh; display: flex; justify-content: center; align-items: center; background: #000; }
         .login-box { 
-            background: rgba(15, 15, 15, 0.95); padding: 40px; border-radius: 30px; 
-            border: 2px solid #222; text-align: center; width: 90%; max-width: 380px; transition: 0.3s;
+            background: rgba(15, 15, 15, 0.98); padding: 40px; border-radius: 30px; 
+            border: 1px solid #222; text-align: center; width: 90%; max-width: 400px; transition: 0.3s;
         }
-        .login-title { font-family: 'Orbitron'; font-size: 24px; font-weight: 900; color: #fff; margin-bottom: 30px; }
-        input { width: 100%; padding: 15px; margin-bottom: 20px; background: #111; border: 1px solid #333; color: #fff; border-radius: 12px; outline: none; text-align: center; font-family: 'Orbitron'; }
-        .btn-main { background: var(--main); color: #fff; border: none; padding: 15px; font-family: 'Orbitron'; font-weight: 900; border-radius: 12px; cursor: pointer; width: 100%; text-transform: uppercase; }
+        .login-title { font-family: 'Orbitron'; font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 25px; letter-spacing: 2px; }
+        
+        input { width: 100%; padding: 15px; margin-bottom: 15px; background: #111; border: 1px solid #333; color: #fff; border-radius: 12px; outline: none; text-align: center; font-family: 'Orbitron'; }
+        
+        /* Social Login Buttons */
+        .divider { margin: 25px 0; display: flex; align-items: center; color: #555; font-size: 12px; }
+        .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: #333; margin: 0 10px; }
 
-        /* Dashboard */
+        .social-container { display: flex; flex-direction: column; gap: 10px; }
+        .social-btn {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            padding: 12px; border-radius: 12px; border: none; font-family: 'Poppins';
+            font-weight: 600; cursor: pointer; transition: 0.3s; color: #fff; font-size: 14px;
+        }
+        .btn-google { background: #fff; color: #000; }
+        .btn-fb { background: #1877F2; }
+        .btn-apple { background: #333; }
+        .social-btn:hover { opacity: 0.8; transform: translateY(-2px); }
+
+        /* Dashboard & Lists */
         #main-panel { display: none; padding: 40px 15px; }
-        .search-wrapper { position: sticky; top: 15px; z-index: 1000; max-width: 600px; margin: 0 auto 40px; }
-        #listSearch { 
-            width: 100%; padding: 18px 30px; background: rgba(20,20,20,0.9); border: 2px solid var(--main); 
-            border-radius: 50px; color: #fff; font-family: 'Orbitron'; box-shadow: 0 0 20px rgba(255,102,0,0.2);
-        }
-
-        /* A B C D ডিজাইন */
-        .alpha-label { 
-            font-family: 'Orbitron'; font-size: 50px; font-weight: 900; 
-            color: transparent; -webkit-text-stroke: 1px var(--neon-blue);
-            margin: 40px 0 20px; display: block; text-shadow: 0 0 15px var(--neon-blue);
-        }
-
-        .list-container { max-width: 600px; margin: 0 auto; padding-bottom: 100px; }
-        .game-group { margin-bottom: 25px; background: #111; padding: 20px; border-radius: 20px; border: 1px solid #222; transition: 0.3s; }
-        .group-header { font-family: 'Orbitron'; font-size: 18px; font-weight: 900; margin-bottom: 15px; color: var(--neon-yellow); border-left: 4px solid var(--neon-yellow); padding-left: 10px; text-transform: uppercase; }
-
-        .panel-item { 
-            background: #000; margin-bottom: 10px; padding: 14px 20px; border-radius: 12px; border: 1px solid #333;
-            display: flex; justify-content: space-between; align-items: center; text-decoration: none; 
-            font-family: 'Orbitron'; font-size: 12px; color: #fff; transition: 0.3s;
-        }
-        .panel-item:hover { background: var(--neon-green); color: #000; font-weight: bold; }
-
-        .active-ff-card { border: 2px solid var(--neon-pink) !important; color: var(--neon-pink) !important; }
+        .alpha-label { font-family: 'Orbitron'; font-size: 50px; font-weight: 900; color: transparent; -webkit-text-stroke: 1px var(--neon-blue); margin: 40px 0 20px; display: block; text-shadow: 0 0 15px var(--neon-blue); }
+        .game-group { margin-bottom: 25px; background: #111; padding: 20px; border-radius: 20px; border: 1px solid #222; }
+        .group-header { font-family: 'Orbitron'; font-size: 17px; color: var(--neon-yellow); border-left: 4px solid var(--neon-yellow); padding-left: 10px; margin-bottom: 15px; }
+        .panel-item { background: #000; margin-bottom: 10px; padding: 14px 20px; border-radius: 12px; border: 1px solid #333; display: flex; justify-content: space-between; align-items: center; text-decoration: none; font-family: 'Orbitron'; font-size: 12px; color: #fff; }
+        .panel-item:hover { background: var(--neon-green); color: #000; }
 
         @media (max-width: 768px) { #cursor, #cursor-outline { display: none; } * { cursor: auto !important; } }
     </style>
@@ -106,57 +95,51 @@
 
     <div id="login-screen">
         <div class="login-box" id="loginBox">
-            <div class="login-title">NAZIM PANEL</div>
+            <div class="login-title">NAZIM PANEL LOGIN</div>
+            
             <input type="text" id="user" placeholder="USERNAME">
             <input type="password" id="pass" placeholder="PASSWORD">
-            <button class="btn-main" onclick="startSystem()">ACCESS SYSTEM</button>
+            <button class="btn-main" style="background: var(--main); color:#fff; border:none; padding:15px; border-radius:12px; cursor:pointer; width:100%; font-family:'Orbitron'; font-weight:900;" onclick="startSystem()">LOGIN</button>
+
+            <div class="divider">OR SIGN IN WITH</div>
+
+            <div class="social-container">
+                <button class="social-btn btn-google" onclick="socialLogin('Google')">
+                    <i class="fab fa-google" style="color: #DB4437;"></i> Continue with Google
+                </button>
+                <button class="social-btn btn-fb" onclick="socialLogin('Facebook')">
+                    <i class="fab fa-facebook"></i> Continue with Facebook
+                </button>
+                <button class="social-btn btn-apple" onclick="socialLogin('Apple')">
+                    <i class="fab fa-apple"></i> Continue with Apple
+                </button>
+            </div>
         </div>
     </div>
 
     <div id="main-panel">
-        <center><h1 style="font-family: 'Orbitron';">NAZIM <span style="color:var(--main)">XLIVE</span></h1></center>
-        <div class="search-wrapper">
-            <input type="text" id="listSearch" placeholder="SEARCH 10,000+ GAMES..." onkeyup="filterList()">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h1 style="font-family: 'Orbitron';">NAZIM <span style="color:var(--main)">XLIVE</span></h1>
+            <button onclick="location.reload()" style="background:red; color:#fff; border:none; padding:8px 15px; border-radius:5px; font-family:'Orbitron'; cursor:pointer;">LOGOUT</button>
         </div>
+        
+        <input type="text" id="listSearch" placeholder="SEARCH 10,000+ GAMES..." onkeyup="filterList()" style="width:100%; padding:15px; background:#111; border:1px solid var(--main); color:#fff; border-radius:30px; margin:20px 0; outline:none; font-family:'Orbitron';">
 
-        <div class="list-container">
-            <div class="game-group" style="border-color: var(--neon-pink);">
-                <div class="group-header" style="color: var(--neon-pink); border-color: var(--neon-pink);">⭐ FREE FIRE SECTION</div>
-                <a href="FF_PANEL_RED_1.apk" download class="panel-item active-ff-card"><span>🎯 AUTO HEADSHOT</span> <span>[APK]</span></a>
-            </div>
-
-            <div id="alphabetical-list"></div>
-        </div>
+        <div class="list-container" id="alphabetical-list"></div>
     </div>
 
     <script>
-        // এখানে আপনি হাজার হাজার গেম নাম অ্যাড করতে পারবেন
+        // ১০০ গেমের স্যাম্পল (১০,০০০ গেমের জন্য লজিক রেডি)
         const gamesData = [
-            { name: "AMONG US", items: ["Mod Menu", "All Unlocked"] },
-            { name: "APEX LEGENDS", items: ["Aimbot", "ESP"] },
-            { name: "ASPHALT 9", items: ["Unlimited Nitro"] },
-            { name: "BRAWL STARS", items: ["Gems Mod"] },
-            { name: "CALL OF DUTY", items: ["Wallhack", "Aim Assist"] },
-            { name: "CLASH OF CLANS", items: ["Unlimited Gold"] },
-            { name: "CYBERPUNK 2077", items: ["Money Mod"] },
-            { name: "DEAD TARGET", items: ["Infinite Ammo"] },
-            { name: "EIGHT BALL POOL", items: ["Long Line"] },
-            { name: "FIFA 25", items: ["Skills Unlock"] },
-            { name: "FORTNITE", items: ["V-Bucks Mod", "Aimbot"] },
-            { name: "GTA V", items: ["God Mode", "Money Hack"] },
-            { name: "GTA SAN ANDREAS", items: ["Cheat Menu"] },
-            { name: "HILL CLIMB", items: ["Coins Mod"] },
-            { name: "LUDO KING", items: ["Always Six"] },
+            { name: "AMONG US", items: ["Mod Menu"] },
+            { name: "APEX LEGENDS", items: ["ESP hack"] },
+            { name: "CALL OF DUTY", items: ["Aimbot"] },
+            { name: "FREE FIRE", items: ["Auto Headshot"] },
+            { name: "GTA V", items: ["Money Hack"] },
             { name: "MINECRAFT", items: ["God Mode"] },
-            { name: "MOBILE LEGENDS", items: ["Map Hack"] },
-            { name: "NEED FOR SPEED", items: ["Speed Mod"] },
-            { name: "PUBG MOBILE", items: ["No Recoil", "White Body"] },
-            { name: "ROBLOX", items: ["Fly & Wallhack"] },
-            { name: "STUMBLE GUYS", items: ["Skin Mod"] },
-            { name: "SUBWAY SURFERS", items: ["Keys Mod"] },
-            { name: "TEMPLE RUN", items: ["Unlimited Money"] },
-            { name: "VALORANT", items: ["Trigger Bot"] }
-            // এভাবে আপনি যত খুশি অ্যাড করতে পারবেন
+            { name: "PUBG MOBILE", items: ["No Recoil"] },
+            { name: "ROBLOX", items: ["Fly Hack"] },
+            { name: "STUMBLE GUYS", items: ["Skins Unlocked"] }
         ];
 
         function startSystem() {
@@ -165,13 +148,27 @@
             const p = document.getElementById('pass').value;
 
             if(u === "nazim" && p === "nazim") {
-                document.getElementById('login-screen').style.display = 'none';
-                document.getElementById('main-panel').style.display = 'block';
-                renderGames();
+                loginSuccess();
             } else {
                 lBox.classList.add('shake-error');
                 setTimeout(() => lBox.classList.remove('shake-error'), 600);
             }
+        }
+
+        function socialLogin(type) {
+            const btn = event.currentTarget;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Connecting to ${type}...`;
+            
+            setTimeout(() => {
+                loginSuccess();
+            }, 1500); // ১.৫ সেকেন্ড লোডিং এনিমেশন
+        }
+
+        function loginSuccess() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('main-panel').style.display = 'block';
+            renderGames();
         }
 
         function renderGames() {
@@ -215,6 +212,7 @@
             }
         }
 
+        // Custom Cursor
         if (window.innerWidth > 768) {
             const cursor = document.getElementById('cursor');
             const outline = document.getElementById('cursor-outline');
