@@ -3,119 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZEFOY | Free Social Media Tools</title>
+    <title>ZEFOY | Premium Social Tools</title>
     <link rel="icon" type="image/png" href="https://zefoy.com/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Hind+Siliguri:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        :root { --zefoy-blue: #007bff; --bg-light: #e9ecef; }
-        body { background-color: var(--bg-light); font-family: 'Poppins', 'Hind Siliguri', sans-serif; margin: 0; padding: 0; }
-        
-        /* প্রফেশনাল হেডার */
-        .header { background-color: #343a40; color: white; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; }
-        .nav-links { display: flex; gap: 15px; font-size: 14px; }
-        .nav-links a { color: white; text-decoration: none; display: flex; align-items: center; gap: 5px; cursor: pointer; transition: 0.3s; }
-        .nav-links a:hover { color: #5dade2; }
+        :root {
+            --primary: #007bff;
+            --primary-hover: #0056b3;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #333;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
 
-        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; text-align: center; }
-        .promo-text { margin-bottom: 25px; font-size: 14px; color: #555; }
-        .promo-text a { color: var(--zefoy-blue); text-decoration: none; font-weight: 600; }
+        body { 
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text);
+            font-family: 'Inter', 'Hind Siliguri', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
 
-        /* সার্ভিস গ্রিড কার্ড */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
-        .card { background: white; padding: 25px; border-radius: 4px; border: 1px solid #ddd; text-align: center; }
-        .card h3 { margin: 0 0 15px 0; font-size: 18px; font-weight: 400; }
-        
-        .btn-go { width: 100%; padding: 10px; background-color: #5dade2; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 18px; transition: 0.2s; }
-        .btn-go:hover { background-color: var(--zefoy-blue); }
-        .btn-disabled { background-color: #85c1e9; cursor: not-allowed; }
-        
-        /* আপনার দেওয়া স্ট্যাটাস মেসেজ */
-        .status-badge { display: inline-block; margin-top: 10px; padding: 2px 10px; border-radius: 3px; font-size: 11px; font-weight: bold; color: white; }
-        .status-red { background-color: #dc3545; }
-        .status-yellow { background-color: #ffc107; color: black; }
+        /* প্রিমিয়াম হেডার */
+        .navbar {
+            background: rgba(52, 58, 64, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+        .navbar a:hover { color: var(--primary); }
 
-        /* প্রাইভেসি পপআপ স্টাইল */
-        #privacy-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; }
-        .modal-content { background: white; width: 85%; max-width: 500px; margin: 10% auto; padding: 30px; border-radius: 8px; text-align: left; line-height: 1.6; position: relative; border-top: 5px solid var(--zefoy-blue); }
-        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; color: #888; }
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        /* ইউটিউব প্রমোশন কার্ড */
+        .promo-banner {
+            background: white;
+            padding: 15px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        .promo-banner a { color: var(--primary); text-decoration: none; font-weight: 700; }
+
+        /* সার্ভিস গ্রিড লেআউট */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+
+        .service-card h3 {
+            font-weight: 600;
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: #2d3436;
+        }
+
+        /* স্টাইলিশ বাটন */
+        .btn-action {
+            width: 100%;
+            padding: 14px;
+            background: #5dade2;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn-action:hover { background: var(--primary); transform: scale(1.02); }
+        .btn-action:disabled { background: #d1d8e0; cursor: not-allowed; }
+
+        /* স্ট্যাটাস ইন্ডিকেটর */
+        .badge {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .badge-update { background: #ffeaa7; color: #d63031; }
+        .badge-active { background: #55efc4; color: #00b894; }
+
+        /* প্রাইভেসি মডাল */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            padding: 20px;
+        }
+        .modal-box {
+            background: white;
+            max-width: 500px;
+            margin: 50px auto;
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .footer { margin-top: 50px; padding: 30px; color: #636e72; font-size: 13px; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <div class="nav-links"><a href="#"><i class="fa fa-home"></i> Home</a></div>
+    <nav class="navbar">
+        <div style="font-weight: 800; color: white; font-size: 22px; letter-spacing: -1px;">ZEFOY</div>
         <div class="nav-links">
-            <a href="#"><i class="fa fa-flag"></i> Terms</a>
-            <a onclick="showPrivacy()"><i class="fa fa-shield-halved"></i> Privacy</a>
+            <a href="#"><i class="fa fa-home"></i> Home</a>
+            <a onclick="toggleModal(true)"><i class="fa fa-shield-halved"></i> Privacy</a>
             <a href="mailto:mrnazim560@gmail.com"><i class="fa fa-envelope"></i> Contact</a>
         </div>
-    </div>
+    </nav>
 
-    <div class="container">
-        <div class="promo-text">
-            Join our <a href="https://www.youtube.com/@XTR_NAZIM" target="_blank">Youtube</a> Channel
+    <div class="container" style="text-align: center;">
+        <div class="promo-banner">
+            Join our <a href="https://www.youtube.com/@XTR_NAZIM" target="_blank">Youtube</a> Channel <i class="fab fa-youtube" style="color:red"></i>
         </div>
 
-        <div class="grid">
-            <div class="card">
+        <div class="service-grid">
+            <div class="service-card">
                 <h3>Followers</h3>
-                <button class="btn-go btn-disabled">→</button>
-                <div class="status-badge status-red">soon will be update</div>
+                <button class="btn-action" disabled><i class="fa fa-arrow-right"></i></button>
+                <div class="badge badge-update">soon will be update</div>
             </div>
 
-            <div class="card">
+            <div class="service-card" style="border-top: 4px solid var(--primary);">
                 <h3>Hearts</h3>
-                <button class="btn-go" onclick="alert('Hearts Tool Loading...')">→</button>
-                <div class="status-badge status-yellow">1 week ago updated</div>
+                <button class="btn-action" onclick="alert('Loading Tool...')"><i class="fa fa-arrow-right"></i></button>
+                <div class="badge badge-active">1 week ago updated</div>
             </div>
 
-            <div class="card">
+            <div class="service-card" style="border-top: 4px solid var(--primary);">
                 <h3>Comments Hearts</h3>
-                <button class="btn-go" onclick="alert('Comments Hearts Tool Loading...')">→</button>
-                <div class="status-badge status-yellow">1 week ago updated</div>
+                <button class="btn-action" onclick="alert('Loading Tool...')"><i class="fa fa-arrow-right"></i></button>
+                <div class="badge badge-active">1 week ago updated</div>
             </div>
 
-            <div class="card">
+            <div class="service-card">
                 <h3>Views</h3>
-                <button class="btn-go btn-disabled">→</button>
-                <div class="status-badge status-red">soon will be update</div>
+                <button class="btn-action" disabled><i class="fa fa-arrow-right"></i></button>
+                <div class="badge badge-update">soon will be update</div>
             </div>
 
-            <div class="card">
+            <div class="service-card">
                 <h3>Shares</h3>
-                <button class="btn-go btn-disabled">→</button>
-                <div class="status-badge status-red">soon will be update</div>
+                <button class="btn-action" disabled><i class="fa fa-arrow-right"></i></button>
+                <div class="badge badge-update">soon will be update</div>
             </div>
 
-            <div class="card">
+            <div class="service-card" style="border-top: 4px solid var(--primary);">
                 <h3>Favorites</h3>
-                <button class="btn-go" onclick="alert('Favorites Tool Loading...')">→</button>
-                <div class="status-badge status-yellow">1 week ago updated</div>
-            </div>
-
-            <div class="card">
-                <h3>Live Stream</h3>
-                <button class="btn-go btn-disabled">→</button>
-                <div class="status-badge status-red">soon will be update</div>
+                <button class="btn-action" onclick="alert('Loading Tool...')"><i class="fa fa-arrow-right"></i></button>
+                <div class="badge badge-active">1 week ago updated</div>
             </div>
         </div>
+
+        <footer class="footer">
+            &copy; 2025 ZEFOY. Created for the community.
+        </footer>
     </div>
 
-    <div id="privacy-modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closePrivacy()">&times;</span>
-            <h2 style="font-family: 'Hind Siliguri';">প্রাইভেসি পলিসি</h2>
-            <p style="font-family: 'Hind Siliguri';">ভাইরে, আপনার ডাটা নিয়া একদম ডরাইবা না। আমরা আপনার পাসওয়ার্ড বা ব্যক্তিগত কোনো তথ্য জমা রাখি না। এই সাইটটা শুধু আপনাদের সাহায্য করার জন্য বানানো হয়েছে।</p>
-            <p style="font-family: 'Hind Siliguri'; font-weight: 600; color: #d9534f;">সতর্কতা: আমরা কোনো ফেক কাজ সমর্থন করি না, সব টুলস নিজ দায়িত্বে ব্যবহার করবেন।</p>
-            <p style="font-family: 'Hind Siliguri';">যেকোনো দরকারে সরাসরি ইমেইল করবা। সিলেটি ভাইদের সাথে ধোঁকাবাজি নাই!</p>
+    <div id="p-modal" class="modal" onclick="toggleModal(false)">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <h2 style="margin-top:0; font-family: 'Hind Siliguri';">প্রাইভেসি ও নিরাপত্তা</h2>
+            <p style="font-family: 'Hind Siliguri'; color: #636e72;">
+                আসসালামু আলাইকুম নাজিম ভাইয়ের ইউজাররা! আমবা আপনাদের কোনো গোপন তথ্য বা পাসওয়ার্ড নেই না। এই ওয়েবসাইটটি সম্পূর্ণ নিরাপদ। কোনো সমস্যা হলে সরাসরি আমাদের ইমেইল করুন। 
+            </p>
+            <button onclick="toggleModal(false)" style="width:100%; padding:12px; background:var(--primary); color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">ঠিক আছে</button>
         </div>
     </div>
 
     <script>
-        function showPrivacy() { document.getElementById('privacy-modal').style.display = 'block'; }
-        function closePrivacy() { document.getElementById('privacy-modal').style.display = 'none'; }
-        window.onclick = function(e) { if (e.target == document.getElementById('privacy-modal')) closePrivacy(); }
+        function toggleModal(show) {
+            document.getElementById('p-modal').style.display = show ? 'block' : 'none';
+        }
     </script>
 </body>
 </html>
