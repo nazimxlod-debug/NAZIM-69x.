@@ -13,7 +13,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
-        // আপনার ফায়ারবেজ কনফিগ কোড
         const firebaseConfig = {
             apiKey: "AIzaSyDp23COK80-myTOd9s-w2HGl3nnC0jf2cY",
             authDomain: "nazim69x-92451.firebaseapp.com",
@@ -29,7 +28,6 @@
         const db = getDatabase(app);
         const ratingRef = ref(db, "ratings");
 
-        // রেটিং সেভ করার ফাংশন
         window.submitRating = function() {
             const stars = window.selectedStars;
             const msg = document.getElementById('feedback').value;
@@ -38,24 +36,21 @@
             push(ratingRef, {
                 star: stars,
                 message: msg,
-                admin_reply: "", // আপনি ডাটাবেজ থেকে এখানে উত্তর দিতে পারবেন
+                admin_reply: "",
                 time: new Date().toLocaleString()
             }).then(() => {
-                alert("ধন্যবাদ নাজিম ইসলাম! আপনার রেটিং এবং মেসেজটি সফলভাবে রেকর্ড করা হয়েছে।");
+                alert("ধন্যবাদ! আপনার রেটিং এবং মেসেজটি সফলভাবে রেকর্ড করা হয়েছে।");
                 closeModal('ratingModal');
                 document.getElementById('feedback').value = "";
                 setStar(0);
-            }).catch((error) => {
-                alert("Error: " + error.message);
             });
         };
 
-        // ডাটাবেজ থেকে রেটিং লিস্ট দেখানো
         const displayList = document.getElementById('rating-display-list');
         onValue(ratingRef, (snapshot) => {
             displayList.innerHTML = "";
             if (!snapshot.exists()) {
-                displayList.innerHTML = "<p>এখনো কোনো রেটিং দেওয়া হয়নি।</p>";
+                displayList.innerHTML = "<p>এখনো কোনো রেটিং নেই।</p>";
                 return;
             }
             snapshot.forEach((child) => {
@@ -63,11 +58,11 @@
                 const item = document.createElement('div');
                 item.className = "rating-item";
                 item.innerHTML = `
-                    <div style="border-bottom: 1px solid #333; margin-bottom: 10px; padding-bottom: 5px;">
-                        <span style="color:#ffcc00; font-size: 18px;">${"⭐".repeat(data.star)}</span>
+                    <div style="border-bottom: 1px solid #333; margin-bottom: 8px; padding-bottom: 5px;">
+                        <span style="color:#ffcc00;">${"⭐".repeat(data.star)}</span>
                         <span style="font-size:10px; color:#666; float:right;">${data.time}</span>
                     </div>
-                    <p style="font-size:14px; color:#eee; margin: 5px 0;">"${data.message}"</p>
+                    <p style="font-size:14px; color:#eee;">"${data.message}"</p>
                     ${data.admin_reply ? `<div class="admin-reply"><b>Nazim:</b> ${data.admin_reply}</div>` : ""}
                 `;
                 displayList.prepend(item);
@@ -83,12 +78,21 @@
         header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #333; }
         .nav-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
         .btn { background: var(--neon); color: black; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; border: none; font-family: 'Orbitron'; font-size: 11px; transition: 0.3s; }
-        
-        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #111; padding: 25px; border-radius: 15px; border: 2px solid var(--neon); z-index: 2000; text-align: left; box-shadow: 0 0 50px rgba(0, 210, 255, 0.4); width: 92%; max-width: 500px; max-height: 85vh; overflow-y: auto; }
+        .btn-update { background: #222; color: #00ff00; border: 1px solid #00ff00; }
+        .btn-privacy { background: #222; color: #ff00ff; border: 1px solid #ff00ff; }
+
+        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #111; padding: 25px; border-radius: 15px; border: 2px solid var(--neon); z-index: 2000; width: 92%; max-width: 500px; max-height: 85vh; overflow-y: auto; box-shadow: 0 0 50px rgba(0, 210, 255, 0.4); }
         .close-btn { background: red; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; margin-top: 15px; display: block; width: fit-content; margin-left: auto; font-weight: bold; }
 
+        .update-box { background: #1a1a1a; padding: 18px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #333; }
+        .title-text { font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 15px; color: var(--neon); }
+        .date-text { font-size: 12px; color: #aaa; background: #222; padding: 2px 8px; border-radius: 4px; }
+        .next-update { color: #ff4444; font-size: 13px; font-weight: bold; margin-top: 10px; }
+        .next-update::before { content: '●'; animation: blink 1s infinite; margin-right: 5px; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+
         .stars { margin: 15px 0; display: flex; gap: 10px; justify-content: center; }
-        .stars i { font-size: 25px; color: #444; cursor: pointer; transition: 0.3s; }
+        .stars i { font-size: 25px; color: #444; cursor: pointer; }
         .stars i.active { color: #ffcc00; text-shadow: 0 0 10px #ffcc00; }
         
         .rating-item { background: #1a1a1a; padding: 15px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid var(--neon); }
@@ -97,11 +101,9 @@
         .intro-left { text-align: left; padding: 25px; border-left: 5px solid var(--neon); margin: 30px 5%; background: #0e0e0e; border-radius: 0 10px 10px 0; }
         .hero { padding: 40px 5%; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .profile-img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--neon); box-shadow: 0 0 25px var(--neon); margin-bottom: 20px; object-fit: cover; }
-        
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 20px 5%; }
-        .video-box { background: #111; border-radius: 15px; overflow: hidden; border: 1px solid #222; }
-        iframe { width: 100%; aspect-ratio: 9/16; border: none; }
-
+        iframe { width: 100%; aspect-ratio: 9/16; border-radius: 15px; border: none; }
+        
         @media (max-width: 600px) { header { flex-direction: column; gap: 10px; } }
     </style>
 </head>
@@ -109,15 +111,16 @@
 
     <header>
         <div class="nav-buttons">
-            <button class="btn" style="background:#ffcc00;" onclick="openModal('ratingModal')"><i class="fas fa-star"></i> Rate Site</button>
-            <button class="btn" onclick="openModal('listModal')"><i class="fas fa-comments"></i> View All Ratings</button>
-            <button class="btn" style="background:#222; color:#fff; border:1px solid #fff;" onclick="openModal('contactModal')"><i class="fas fa-envelope"></i> Contact</button>
+            <button class="btn" style="background:#ffcc00;" onclick="openModal('ratingModal')"><i class="fas fa-star"></i> Rate</button>
+            <button class="btn" onclick="openModal('listModal')"><i class="fas fa-comments"></i> Ratings</button>
+            <button class="btn btn-update" onclick="openModal('updateModal')"><i class="fas fa-history"></i> Updates</button>
+            <button class="btn btn-privacy" onclick="openModal('privacyModal')"><i class="fas fa-shield-alt"></i> Privacy</button>
         </div>
         <div style="font-family:'Orbitron'; color:var(--neon); font-size: 18px;">NAZIM 69x</div>
     </header>
 
     <div id="ratingModal" class="modal">
-        <h2 style="color:#ffcc00; font-family:'Orbitron';">Give Rating</h2>
+        <h2 style="color:#ffcc00; font-family:'Orbitron';">User Rating</h2>
         <div class="stars">
             <i class="fas fa-star" onclick="setStar(1)"></i>
             <i class="fas fa-star" onclick="setStar(2)"></i>
@@ -125,33 +128,47 @@
             <i class="fas fa-star" onclick="setStar(4)"></i>
             <i class="fas fa-star" onclick="setStar(5)"></i>
         </div>
-        <textarea id="feedback" style="width:100%; background:#222; color:#fff; border:1px solid #444; padding:10px; border-radius:5px;" placeholder="আপনার মতামত বা সমস্যা লিখুন..." rows="4"></textarea>
-        <button class="btn" style="width:100%; margin-top:10px; font-size:14px;" onclick="submitRating()">Submit Message</button>
+        <textarea id="feedback" style="width:100%; background:#222; color:white; border:1px solid #444; padding:10px; border-radius:5px;" placeholder="মতামত বা সমস্যা লিখুন..." rows="4"></textarea>
+        <button class="btn" style="width:100%; margin-top:10px;" onclick="submitRating()">Submit Message</button>
         <button class="close-btn" onclick="closeModal('ratingModal')">Close</button>
     </div>
 
     <div id="listModal" class="modal">
-        <h2 style="color:var(--neon); font-family:'Orbitron';">User Feedback</h2>
-        <div id="rating-display-list" style="margin-top:15px;">
-            <p>Loading ratings...</p>
-        </div>
+        <h2 style="color:var(--neon); font-family:'Orbitron';">Feedbacks</h2>
+        <div id="rating-display-list"></div>
         <button class="close-btn" onclick="closeModal('listModal')">Close</button>
     </div>
 
-    <div id="contactModal" class="modal">
-        <h2 style="color:var(--neon); font-family: 'Orbitron';">Contact Me</h2>
-        <p style="font-size: 16px;">Email: <b>ffnazim560@gmail.com</b></p>
-        <button class="close-btn" onclick="closeModal('contactModal')">Close</button>
+    <div id="updateModal" class="modal">
+        <h2 style="color:#00ff00; font-family:'Orbitron'; border-bottom: 2px solid #333; padding-bottom: 10px;">UPDATE DETAILS</h2>
+        <div class="update-box">
+            <div style="display:flex; justify-content:space-between;">
+                <span class="title-text">Website update</span>
+                <span class="date-text">01/01/2026</span>
+            </div>
+            <p style="font-size:15px; margin:10px 0;">নতুন ইউজার ইন্টারফেস এবং স্পিড অপ্টিমাইজেশন করা হয়েছে।</p>
+            <div class="next-update">Next update coming soon.</div>
+        </div>
+        <button class="close-btn" onclick="closeModal('updateModal')">Close</button>
+    </div>
+
+    <div id="privacyModal" class="modal">
+        <h2 style="color:#ff00ff; font-family:'Orbitron'">SECURITY & PRIVACY</h2>
+        <p style="color: #00ff00; font-weight: bold;">Security Version: 1.1</p>
+        <p style="font-size: 14px; line-height: 1.6; color: #eee;">
+            আপনাদের নিরাপত্তা আমাদের সর্বোচ্চ অগ্রাধিকার। ব্যবহারকারীদের ব্যক্তিগত তথ্য এবং ব্রাউজিং কার্যক্রম সুরক্ষিত রাখতে আমরা নিয়মিত আমাদের সিস্টেম আপডেট করি। আমরা একটি সুরক্ষিত ডিজিটাল পরিবেশ বজায় রাখতে প্রতিশ্রুতিবদ্ধ।
+        </p>
+        <button class="close-btn" onclick="closeModal('privacyModal')">Close</button>
     </div>
 
     <div class="intro-left">
         <h3 style="font-family:'Orbitron'; color:var(--neon)">পরিচিতি</h3>
-        <p style="font-size: 16px;">আমি <b>মোঃ নাজিম ইসলাম</b>। আপনারা আমাকে চেনেন <b>NAZIM 69x</b> নামে।</p>
+        <p>আমি <b>মোঃ নাজিম ইসলাম (NAZIM 69x)</b>। আপনাদের ভালোবাসায় আমি এগিয়ে যাচ্ছি।</p>
     </div>
 
     <section class="hero">
         <img src="profile.jpg" alt="NAZIM 69x" class="profile-img"> 
-        <h1 style="font-family: 'Orbitron'; font-size: 40px; margin: 0;">NAZIM 69x</h1>
+        <h1 style="font-family: 'Orbitron'; font-size: 35px; margin: 0;">NAZIM 69x</h1>
     </section>
 
     <div class="grid">
@@ -163,20 +180,12 @@
         window.selectedStars = 0;
         function openModal(id) { document.getElementById(id).style.display = "block"; }
         function closeModal(id) { document.getElementById(id).style.display = "none"; }
-        
         function setStar(n) {
             window.selectedStars = n;
             let stars = document.querySelectorAll('.stars i');
-            stars.forEach((s, i) => {
-                s.classList.toggle('active', i < n);
-            });
+            stars.forEach((s, i) => s.classList.toggle('active', i < n));
         }
-        
-        window.onclick = function(event) {
-            if (event.target.className === 'modal') {
-                event.target.style.display = "none";
-            }
-        }
+        window.onclick = function(e) { if(e.target.className==='modal') e.target.style.display="none"; }
     </script>
 </body>
 </html>
