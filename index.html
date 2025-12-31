@@ -8,8 +8,6 @@
     <link rel="icon" type="image/png" href="profile.jpg">
     <link rel="apple-touch-icon" href="profile.jpg">
     <meta property="og:image" content="profile.jpg">
-    <meta property="og:image:width" content="300">
-    <meta property="og:image:height" content="300">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
@@ -32,7 +30,6 @@
         .btn-privacy { background: #222; color: #ff00ff; border: 1px solid #ff00ff; }
         .btn:hover { box-shadow: 0 0 15px var(--neon); transform: scale(1.05); }
 
-        /* পপ-আপ সেটিংস */
         .modal {
             display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
             background: #111; padding: 25px; border-radius: 15px; border: 2px solid var(--neon);
@@ -41,21 +38,17 @@
         }
         .close-btn { background: red; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; margin-top: 15px; display: block; width: fit-content; margin-left: auto; }
 
-        /* আপডেট লেয়ার স্টাইল */
         .update-layer { background: #1a1a1a; padding: 15px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid var(--neon); }
-        .update-title { color: var(--neon); font-weight: bold; font-family: 'Orbitron'; font-size: 14px; margin-bottom: 5px; display: block; }
-        .coming-soon-text { color: #ff4444; font-size: 12px; font-weight: bold; font-family: 'Orbitron'; margin-top: 10px; display: block; text-transform: uppercase; }
+        .update-header { display: flex; justify-content: space-between; font-family: 'Orbitron'; font-size: 11px; color: var(--neon); margin-bottom: 8px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        .update-body { font-size: 14px; margin: 8px 0; line-height: 1.5; }
+        .coming-soon { color: #ff4444; font-size: 12px; font-weight: bold; font-family: 'Orbitron'; margin-top: 5px; display: block; }
 
         .intro-left {
             text-align: left; padding: 25px; border-left: 5px solid var(--neon); 
             margin: 30px 5%; background: #0e0e0e; border-radius: 0 10px 10px 0;
         }
         .hero { padding: 40px 5%; display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .profile-img { 
-            width: clamp(150px, 35vw, 200px); height: clamp(150px, 35vw, 200px); 
-            border-radius: 50%; border: 4px solid var(--neon); box-shadow: 0 0 25px var(--neon); 
-            margin-bottom: 20px; object-fit: cover; 
-        }
+        .profile-img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--neon); box-shadow: 0 0 25px var(--neon); margin-bottom: 20px; object-fit: cover; }
         
         .socials { display: flex; gap: 20px; margin-top: 20px; }
         .socials a { font-size: 30px; color: white; transition: 0.4s; }
@@ -66,7 +59,7 @@
         .video-box { background: #111; border-radius: 15px; border: 1px solid #222; overflow: hidden; }
         iframe { width: 100%; aspect-ratio: 9/16; border: none; }
 
-        @media (max-width: 600px) { header { flex-direction: column; gap: 10px; } }
+        @media (max-width: 600px) { header { flex-direction: column; gap: 10px; } .update-header { flex-direction: column; gap: 5px; } }
     </style>
 </head>
 <body>
@@ -87,18 +80,24 @@
     </div>
 
     <div id="updateModal" class="modal">
-        <h2 style="color:#00ff00; font-family:'Orbitron'; border-bottom: 1px solid #333; padding-bottom: 10px;">Updated Details</h2>
+        <h2 style="color:#00ff00; font-family:'Orbitron'; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px;">Update Center</h2>
         
         <div class="update-layer">
-            <span class="update-title">ওয়েবসাইট আপডেট ডিটেইলস 1/1/2026</span>
-            <p style="margin: 5px 0; font-size: 14px;">ওয়েবসাইট আপডেট: নতুন ইউজার ইন্টারফেস এবং স্পিড অপ্টিমাইজেশন করা হয়েছে।</p>
-            <span class="coming-soon-text">ওয়েবসাইট আপডেট ডিটেইলস নেক্সট আপডেট কামিং সুন</span>
+            <div class="update-header">
+                <span>Website update details</span>
+                <span>Last update 01/01/2026</span>
+            </div>
+            <p class="update-body">ওয়েবসাইট আপডেট: নতুন ইউজার ইন্টারফেস এবং স্পিড অপ্টিমাইজেশন করা হয়েছে।</p>
+            <span class="coming-soon">Next update coming soon.</span>
         </div>
         
         <div class="update-layer" style="border-left-color: #ff00ff;">
-            <span class="update-title" style="color: #ff00ff;">প্রাইভেসি আপডেট ডিটেইলস 2/1/2026</span>
-            <p style="margin: 5px 0; font-size: 14px;">প্রাইভেসি আপডেট: আপনাদের সুরক্ষার জন্য প্রাইভেসী সিস্টেম আরও শক্তিশালী করা হয়েছে।</p>
-            <span class="coming-soon-text">নেক্সট প্রাইভেসি আপডেট কামিং সুন</span>
+            <div class="update-header" style="color: #ff00ff;">
+                <span>Privacy Details</span>
+                <span>Last update 01/02/2026</span>
+            </div>
+            <p class="update-body">প্রাইভেসি আপডেট: আপনাদের সুরক্ষার জন্য প্রাইভেসী সিস্টেম আরও শক্তিশালী করা হয়েছে।</p>
+            <span class="coming-soon">Next update coming soon.</span>
         </div>
 
         <button class="close-btn" onclick="closeModal('updateModal')">Close</button>
@@ -108,22 +107,22 @@
         <h2 style="color:#ff00ff; font-family:'Orbitron'">Security & Privacy</h2>
         <p style="color: #00ff00; font-weight: bold;">Security Version: 1.1</p>
         <p style="font-size: 14px; line-height: 1.6; color: #eee;">
-            আপনাদের সুরক্ষার জন্য আমাদের সংস্থা <b>NAZIM 69x Security</b> সবসময় সতর্ক। আমাদের সিকিউরিটি সিস্টেম প্রতিদিন আপডেট হচ্ছে যাতে আপনাদের ডাটা এবং ব্রাউজিং অভিজ্ঞতা ১০০% নিরাপদ থাকে। <br><br>
+            আপনাদের সুরক্ষার জন্য আমাদের সংস্থা <b>NAZIM 69x Security</b> সবসময় সতর্ক। আমাদের সিকিউরিটি সিস্টেম প্রতিদিন আপডেট হচ্ছে যাতে আপনাদের ডাটা এবং ব্রাউজিং অভিজ্ঞতা ১০০% নিরাপদ থাকে। <br><br>
             • <b>এনক্রিপশন:</b> প্রতিটি ভিজিট উন্নত সিকিউরিটি দ্বারা সুরক্ষিত। <br>
             • <b>রিয়েল-টাইম মনিটরিং:</b> আমাদের বিশেষ টিম সার্বক্ষণিক সাইটের নিরাপত্তা নিশ্চিত করে। <br><br>
-            আপনাদের ডিজিটাল সুরক্ষায় আমরা কোনো আপস করি না। <b>NAZIM 69x Security</b> টিমের ওপর আস্থা রাখুন।
+            আপনাদের ডিজিটাল সুরক্ষায় আমরা কোনো আপস করি না। <b>NAZIM 69x Security</b> টিমের ওপর আস্থা রাখুন।
         </p>
         <button class="close-btn" onclick="closeModal('privacyModal')">Close</button>
     </div>
 
     <div class="intro-left">
         <h3 style="font-family:'Orbitron'; color:var(--neon)">পরিচিতি</h3>
-        <p>আমি <b>মোঃ নাজিম ইসলাম</b>। আপনারা আমাকে চেনেন <b>NAZIM 69x</b> নামে। আমি বর্তমানে <b>TikTok</b>-এ অনেক বেশি ভাইরাল এবং আপনাদের ভালোবাসায় এগিয়ে যাচ্ছি।</p>
+        <p>আমি <b>মোঃ নাজিম ইসলাম</b>। আপনারা আমাকে চেনেন <b>NAZIM 69x</b> নামে। আমি বর্তমানে <b>TikTok</b>-এ অনেক বেশি ভাইরাল এবং আপনাদের ভালোবাসায় এগিয়ে যাচ্ছি।</p>
     </div>
 
     <section class="hero">
         <img src="profile.jpg" alt="NAZIM 69x" class="profile-img"> 
-        <h1 style="font-family: 'Orbitron'; font-size: clamp(30px, 8vw, 50px); margin: 0;">NAZIM 69x</h1>
+        <h1 style="font-family: 'Orbitron'; font-size: 40px; margin: 0;">NAZIM 69x</h1>
         <div class="socials">
             <a href="https://www.facebook.com/profile.php?id=61585781825432" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="https://www.tiktok.com/@nazim69x" target="_blank"><i class="fab fa-tiktok"></i></a>
