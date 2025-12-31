@@ -6,6 +6,9 @@
     <title>NAZIM 69x | Official</title>
     
     <link rel="icon" type="image/png" href="profile.jpg">
+    <link rel="apple-touch-icon" href="profile.jpg">
+    <meta property="og:image" content="profile.jpg">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
     
@@ -26,15 +29,14 @@
         .btn-update { background: #222; color: #00ff00; border: 1px solid #00ff00; }
         .btn-privacy { background: #222; color: #ff00ff; border: 1px solid #ff00ff; }
 
-        /* মাইক বাটন স্টাইল */
+        /* স্পিক বাটন স্টাইল */
         .speak-btn {
             background: rgba(0, 210, 255, 0.1); border: 1px solid var(--neon);
             color: var(--neon); padding: 8px 15px; border-radius: 30px;
-            cursor: pointer; font-size: 14px; margin-top: 10px; display: inline-flex;
-            align-items: center; gap: 8px; transition: 0.3s; font-weight: bold;
+            cursor: pointer; font-size: 13px; margin-top: 10px; display: inline-flex;
+            align-items: center; gap: 8px; transition: 0.3s;
         }
         .speak-btn:hover { background: var(--neon); color: black; box-shadow: 0 0 15px var(--neon); }
-        .speak-btn i { font-size: 16px; }
 
         /* পপ-আপ সেটিংস */
         .modal {
@@ -46,10 +48,7 @@
         .close-btn { background: red; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; margin-top: 15px; display: block; width: fit-content; margin-left: auto; }
 
         .update-layer { background: #1a1a1a; padding: 15px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid var(--neon); }
-        .intro-left {
-            text-align: left; padding: 25px; border-left: 5px solid var(--neon); 
-            margin: 30px 5%; background: #0e0e0e; border-radius: 0 10px 10px 0;
-        }
+        .intro-left { text-align: left; padding: 25px; border-left: 5px solid var(--neon); margin: 30px 5%; background: #0e0e0e; border-radius: 0 10px 10px 0; }
         .hero { padding: 40px 5%; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .profile-img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--neon); box-shadow: 0 0 25px var(--neon); margin-bottom: 20px; object-fit: cover; }
         
@@ -71,7 +70,7 @@
 
     <div id="contactModal" class="modal">
         <h2 style="color:var(--neon)">Contact Me</h2>
-        <p id="txt-contact">ইমেইল: ffnazim560@gmail.com। যেকোনো প্রয়োজনে আমাদের সাথে ইমেইলে যোগাযোগ করুন। ধন্যবাদ।</p>
+        <p id="txt-contact">Email: ffnazim560@gmail.com. যেকোনো প্রয়োজনে আমাদের সাথে যোগাযোগ করুন।</p>
         <button class="speak-btn" onclick="speak('txt-contact')"><i class="fas fa-volume-up"></i> শুনে নিন</button>
         <button class="close-btn" onclick="closeModal('contactModal')">Close</button>
     </div>
@@ -79,11 +78,11 @@
     <div id="updateModal" class="modal">
         <h2 style="color:#00ff00; font-family:'Orbitron';">Updated Details</h2>
         <div class="update-layer">
-            <p id="txt-web-up"><b>ওয়েবসাইট আপডেট ডিটেইলস পহেলা জানুয়ারি ২০২৬:</b> ওয়েবসাইট আপডেট, নতুন ইউজার ইন্টারফেস এবং স্পিড অপ্টিমাইজেশন করা হয়েছে। ওয়েবসাইট আপডেট ডিটেইলস নেক্সট আপডেট কামিং সুন।</p>
+            <p id="txt-web-up">ওয়েবসাইট আপডেট ডিটেইলস 1/1/2026. ওয়েবসাইট আপডেট: নতুন ইউজার ইন্টারফেস এবং স্পিড অপ্টিমাইজেশন করা হয়েছে। নেক্সট আপডেট কামিং সুন।</p>
             <button class="speak-btn" onclick="speak('txt-web-up')"><i class="fas fa-volume-up"></i> শুনে নিন</button>
         </div>
         <div class="update-layer" style="border-left-color: #ff00ff;">
-            <p id="txt-pri-up"><b>প্রাইভেসি আপডেট ডিটেইলস ২রা জানুয়ারি ২০২৬:</b> আপনাদের সুরক্ষার জন্য প্রাইভেসী সিস্টেম আরও শক্তিশালী করা হয়েছে। নেক্সট প্রাইভেসি আপডেট কামিং সুন।</p>
+            <p id="txt-pri-up">প্রাইভেসি আপডেট ডিটেইলস 2/1/2026. প্রাইভেসি আপডেট: আপনাদের সুরক্ষার জন্য প্রাইভেসী সিস্টেম আরও শক্তিশালী করা হয়েছে। নেক্সট প্রাইভেসি আপডেট কামিং সুন।</p>
             <button class="speak-btn" onclick="speak('txt-pri-up')"><i class="fas fa-volume-up" style="color:#ff00ff"></i> শুনে নিন</button>
         </div>
         <button class="close-btn" onclick="closeModal('updateModal')">Close</button>
@@ -91,7 +90,7 @@
 
     <div class="intro-left">
         <h3 style="font-family:'Orbitron'; color:var(--neon)">পরিচিতি</h3>
-        <p id="txt-intro">আমি মোঃ নাজিম ইসলাম। আপনারা আমাকে চেনেন নাজিম সিক্সটি নাইন এক্স নামে। আমি বর্তমানে টিকটকে অনেক বেশি ভাইরাল এবং আপনাদের ভালোবাসায় এগিয়ে যাচ্ছি।</p>
+        <p id="txt-intro">আমি মোঃ নাজিম ইসলাম। আপনারা আমাকে চেনেন NAZIM 69x নামে। আমি বর্তমানে TikTok-এ অনেক বেশি ভাইরাল এবং আপনাদের ভালোবাসায় এগিয়ে যাচ্ছি।</p>
         <button class="speak-btn" onclick="speak('txt-intro')"><i class="fas fa-microphone-alt"></i> ভয়েসে শুনুন</button>
     </div>
 
@@ -109,35 +108,28 @@
         function openModal(id) { document.getElementById(id).style.display = "block"; }
         function closeModal(id) { document.getElementById(id).style.display = "none"; }
         
-        // অ্যাডভান্সড বাংলা ভয়েস ফাংশন
         function speak(elementId) {
-            // আগের কোনো ভয়েস চললে তা বন্ধ করা
             window.speechSynthesis.cancel();
-
             const text = document.getElementById(elementId).innerText;
             const speech = new SpeechSynthesisUtterance(text);
             
-            // ব্রাউজারে থাকা সব ভয়েস লিস্ট নেওয়া
-            let voices = window.speechSynthesis.getVoices();
+            // ব্রাউজার থেকে সেরা ভয়েসটি সেট করা
+            const voices = window.speechSynthesis.getVoices();
+            // বাংলা ভয়েস অগ্রাধিকার পাবে, কিন্তু ইংরেজি শব্দগুলোও সে পড়বে
+            const bnVoice = voices.find(v => v.lang.includes('bn'));
             
-            // বাংলা ভয়েস ফিল্টার করা (Google বা Microsoft এর সেরাটা খুঁজবে)
-            let selectedVoice = voices.find(voice => voice.lang === 'bn-BD' || voice.lang === 'bn-IN');
+            if (bnVoice) speech.voice = bnVoice;
             
-            if (selectedVoice) {
-                speech.voice = selectedVoice;
-            }
-
-            speech.lang = 'bn-BD'; 
-            speech.pitch = 1.1; // গলার আওয়াজ একটু মিষ্টি করার জন্য
-            speech.rate = 0.9;  // পড়ার গতি সামান্য কমিয়ে বাস্তবসম্মত করা
-            speech.volume = 1;  // ফুল সাউন্ড
+            speech.lang = 'bn-BD';
+            speech.pitch = 1.0; 
+            speech.rate = 0.95; // বাস্তবসম্মত গতি
+            speech.volume = 1;
 
             window.speechSynthesis.speak(speech);
         }
 
-        // ব্রাউজার লোড হওয়ার সময় ভয়েস লিস্ট লোড নিশ্চিত করা
+        // নিশ্চিত করা যাতে ভয়েস লোড হয়
         window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
-
         window.onclick = function(event) { if (event.target.className === 'modal') { event.target.style.display = "none"; } }
     </script>
 
