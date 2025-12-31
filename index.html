@@ -3,190 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAZIM 69x | Official</title>
+    <title>NAZIM 69x | 2026 Celebration</title>
     
     <link rel="icon" type="image/png" href="profile.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Noto+Sans+Bengali:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Hind+Siliguri:wght@700&display=swap" rel="stylesheet">
     
     <style>
         :root { --neon: #00d2ff; --bg: #050505; }
-        * { box-sizing: border-box; }
-        body { margin: 0; background: var(--bg); color: white; font-family: 'Noto Sans Bengali', sans-serif; overflow-x: hidden; }
+        body { margin: 0; background: var(--bg); color: white; font-family: 'Hind Siliguri', sans-serif; overflow-x: hidden; }
 
-        header { 
-            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; 
-            background: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #333; 
+        /* নিউ ইয়ার ওভারলে */
+        #celebration-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 9999; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; overflow: hidden;
         }
-        .nav-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
-        .btn {
-            background: var(--neon); color: black; padding: 6px 12px; border-radius: 5px; 
-            cursor: pointer; font-weight: bold; border: none; font-family: 'Orbitron'; font-size: 11px; transition: 0.3s;
+
+        .ny-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(40px, 10vw, 80px);
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 0 20px #ff0000, 0 0 40px #ff00ff, 0 0 60px #00d2ff;
+            animation: textZoom 2s infinite alternate;
+            z-index: 10001;
+            pointer-events: none;
         }
-        .btn-update { background: #222; color: #00ff00; border: 1px solid #00ff00; }
-        .btn-privacy { background: #222; color: #ff00ff; border: 1px solid #ff00ff; }
 
-        /* পপ-আপ সেটিংস */
-        .modal {
-            display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: #111; padding: 25px; border-radius: 15px; border: 2px solid var(--neon);
-            z-index: 2000; text-align: left; box-shadow: 0 0 50px rgba(0, 210, 255, 0.4); width: 92%; max-width: 500px;
-            max-height: 85vh; overflow-y: auto;
+        @keyframes textZoom {
+            from { transform: scale(1); opacity: 0.8; }
+            to { transform: scale(1.1); opacity: 1; }
         }
-        .close-btn { background: red; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; margin-top: 15px; display: block; width: fit-content; margin-left: auto; font-weight: bold; }
 
-        /* আপডেট বক্স ডিজাইন */
-        .update-box { background: #1a1a1a; padding: 18px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #333; }
-        .update-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #444; padding-bottom: 8px; }
-        .title-text { font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 15px; color: var(--neon); }
-        .date-text { font-size: 12px; color: #aaa; background: #222; padding: 2px 8px; border-radius: 4px; }
-        .update-content { font-size: 15px; line-height: 1.6; color: #eee; margin: 12px 0; }
-        .next-update { color: #ff4444; font-size: 13px; font-weight: bold; font-family: 'Roboto'; }
-
-        /* প্রোফাইল ও পরিচিতি */
-        .intro-left { text-align: left; padding: 25px; border-left: 5px solid var(--neon); margin: 30px 5%; background: #0e0e0e; border-radius: 0 10px 10px 0; }
-        .hero { padding: 40px 5%; display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .profile-img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--neon); box-shadow: 0 0 25px var(--neon); margin-bottom: 20px; object-fit: cover; }
-        .socials { display: flex; gap: 20px; margin-top: 20px; }
-        .socials a { font-size: 30px; color: white; transition: 0.3s; }
-        .socials a:hover { color: var(--neon); transform: scale(1.2); }
-
-        /* ভিডিও সেকশন ডিজাইন */
-        .video-section { padding: 40px 5%; text-align: center; }
-        .section-title { font-family: 'Orbitron'; color: var(--neon); margin-bottom: 30px; border-bottom: 2px solid var(--neon); display: inline-block; padding-bottom: 5px; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
-        .video-box { background: #111; border-radius: 15px; overflow: hidden; border: 1px solid #222; position: relative; transition: 0.3s; }
-        .video-box:hover { border-color: var(--neon); box-shadow: 0 0 15px rgba(0, 210, 255, 0.2); }
-        iframe { width: 100%; aspect-ratio: 9/16; border: none; }
-
-        /* কামিং সুন কার্ড */
-        .coming-soon-card { 
-            aspect-ratio: 9/16; display: flex; flex-direction: column; align-items: center; 
-            justify-content: center; background: linear-gradient(45deg, #111, #1a1a1a); 
-            color: #444; font-family: 'Orbitron'; font-size: 14px; text-transform: uppercase;
-            border: 1px dashed #333; border-radius: 15px;
+        /* আতশবাজি ক্যানভাস */
+        #fireworks-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000;
         }
-        .coming-soon-card i { font-size: 40px; margin-bottom: 15px; color: #222; }
 
-        @media (max-width: 600px) { header { flex-direction: column; gap: 10px; } }
+        /* টাইমার টেক্সট */
+        #timer-box {
+            position: absolute; bottom: 50px; font-family: 'Orbitron';
+            color: rgba(255,255,255,0.5); font-size: 14px;
+        }
+
+        /* মেইন ওয়েবসাইট কন্টেন্ট (শুরুতে লুকানো থাকবে না, নিচে থাকবে) */
+        .main-site { opacity: 0; transition: 1s; }
+        .show-site { opacity: 1; }
+
+        /* আগের স্টাইলগুলো এখানে বজায় থাকবে... */
+        header { padding: 15px 5%; display: flex; justify-content: space-between; background: #000; }
+        .hero { text-align: center; padding: 50px; }
+        .profile-img { width: 150px; border-radius: 50%; border: 3px solid var(--neon); }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="nav-buttons">
-            <button class="btn" onclick="openModal('contactModal')"><i class="fas fa-paper-plane"></i> Contact</button>
-            <button class="btn btn-update" onclick="openModal('updateModal')"><i class="fas fa-history"></i> Updated Details</button>
-            <button class="btn btn-privacy" onclick="openModal('privacyModal')"><i class="fas fa-shield-alt"></i> Privacy</button>
-        </div>
-        <div style="font-family:'Orbitron'; color:var(--neon); font-size: 18px;">NAZIM 69x</div>
-    </header>
-
-    <div id="contactModal" class="modal">
-        <h2 style="color:var(--neon); font-family: 'Orbitron';">Contact Me</h2>
-        <p>Email: <b>ffnazim560@gmail.com</b></p>
-        <button class="close-btn" onclick="closeModal('contactModal')">Close</button>
+    <div id="celebration-overlay">
+        <canvas id="fireworks-canvas"></canvas>
+        <h1 class="ny-text">HAPPY NEW YEAR<br><span style="color:var(--neon)">2026</span></h1>
+        <div id="timer-box">Closing in <span id="countdown">30</span>s</div>
+        <p style="position:absolute; top:20px; color:#444; font-size:12px;">Tap anywhere for Sound 🔊</p>
     </div>
 
-    <div id="updateModal" class="modal">
-        <h2 style="color:#00ff00; font-family:'Orbitron'; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px;">UPDATE CENTER</h2>
-        <div class="update-box">
-            <div class="update-title-row">
-                <span class="title-text">Website update details</span>
-                <span class="date-text">Last update 01/01/2026</span>
-            </div>
-            <p class="update-content">নতুন ইউজার ইন্টারফেস এবং স্পিড অপ্টিমাইজেশন করা হয়েছে।</p>
-            <div class="next-update">Next update coming soon.</div>
-        </div>
-        <div class="update-box" style="border-left: 5px solid #ff00ff;">
-            <div class="update-title-row">
-                <span class="title-text" style="color: #ff00ff;">Privacy Details</span>
-                <span class="date-text">Last update 01/02/2026</span>
-            </div>
-            <p class="update-content">আপনাদের সুরক্ষার জন্য প্রাইভেসী সিস্টেম আরও শক্তিশালী করা হয়েছে।</p>
-            <div class="next-update">Next update coming soon.</div>
-        </div>
-        <button class="close-btn" onclick="closeModal('updateModal')">Close</button>
+    <audio id="firework-sound" src="https://www.soundjay.com/mechanical/sounds/explosion-01.mp3" preload="auto"></audio>
+
+    <div class="main-site" id="main-content">
+        <header>
+            <div style="font-family:'Orbitron'; color:var(--neon); font-size: 20px;">NAZIM 69x</div>
+        </header>
+
+        <section class="hero">
+            <img src="profile.jpg" alt="NAZIM" class="profile-img">
+            <h1 style="font-family:'Orbitron'">WELCOME TO 2026</h1>
+            <p>নাজিম ইসলাম সিক্সটি নাইন এক্স - অফিসিয়াল ওয়েবসাইট</p>
+        </section>
+
+        <h2 style="text-align:center; color:var(--neon)">More Content Coming Soon...</h2>
     </div>
-
-    <div id="privacyModal" class="modal">
-        <h2 style="color:#ff00ff; font-family:'Orbitron'">SECURITY & PRIVACY</h2>
-        <p style="font-size: 15px; line-height: 1.6; color: #eee;">
-            আপনাদের সুরক্ষার জন্য আমাদের সংস্থা <b>NAZIM 69x Security</b> সবসময় সতর্ক। আপনাদের ডাটা এবং ব্রাউজিং অভিজ্ঞতা ১০০% নিরাপদ রাখতে আমাদের সিকিউরিটি সিস্টেম প্রতিদিন আপডেট করা হয়।
-        </p>
-        <button class="close-btn" onclick="closeModal('privacyModal')">Close</button>
-    </div>
-
-    <section class="hero">
-        <img src="profile.jpg" alt="NAZIM 69x" class="profile-img"> 
-        <h1 style="font-family: 'Orbitron'; font-size: 40px; margin: 0;">NAZIM 69x</h1>
-        <div class="socials">
-            <a href="https://www.facebook.com/profile.php?id=61585781825432" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.tiktok.com/@nazim69x" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://youtube.com/@XTR_NAZIM" target="_blank"><i class="fab fa-youtube"></i></a>
-        </div>
-    </section>
-
-    <div class="intro-left">
-        <h3 style="font-family:'Orbitron'; color:var(--neon)">পরিচিতি</h3>
-        <p>আমি <b>মোঃ নাজিম ইসলাম</b>। আপনারা আমাকে চেনেন <b>NAZIM 69x</b> নামে। আমি বর্তমানে <b>TikTok</b>-এ অনেক বেশি ভাইরাল এবং আপনাদের ভালোবাসায় এগিয়ে যাচ্ছি।</p>
-    </div>
-
-    <section class="video-section">
-        <h2 class="section-title">TikTok Video List</h2>
-        <div class="grid">
-            <div class="video-box">
-                <iframe src="https://www.tiktok.com/embed/7589163619233926420"></iframe>
-            </div>
-            <div class="video-box">
-                <div class="coming-soon-card">
-                    <i class="fab fa-tiktok"></i>
-                    <span>Coming Soon</span>
-                </div>
-            </div>
-            <div class="video-box">
-                <div class="coming-soon-card">
-                    <i class="fab fa-tiktok"></i>
-                    <span>Coming Soon</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="video-section" style="background: rgba(255, 255, 255, 0.02);">
-        <h2 class="section-title" style="color: #ff0000; border-color: #ff0000;">YouTube Video List</h2>
-        <div class="grid">
-            <div class="video-box">
-                <div class="coming-soon-card">
-                    <i class="fab fa-youtube"></i>
-                    <span style="color: #555;">Coming Soon</span>
-                </div>
-            </div>
-            <div class="video-box">
-                <div class="coming-soon-card">
-                    <i class="fab fa-youtube"></i>
-                    <span style="color: #555;">Coming Soon</span>
-                </div>
-            </div>
-            <div class="video-box">
-                <div class="coming-soon-card">
-                    <i class="fab fa-youtube"></i>
-                    <span style="color: #555;">Coming Soon</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer style="padding: 30px; text-align: center; color: #444; font-size: 12px; border-top: 1px solid #111;">
-        <p>&copy; 2026 NAZIM 69x | Secured by NAZIM 69x Security</p>
-    </footer>
 
     <script>
-        function openModal(id) { document.getElementById(id).style.display = "block"; }
-        function closeModal(id) { document.getElementById(id).style.display = "none"; }
-        window.onclick = function(event) { if (event.target.className === 'modal') { event.target.style.display = "none"; } }
-    </script>
+        // ১. টাইমার এবং অটো-ক্লোজ লজিক
+        let timeLeft = 30;
+        const countdownElem = document.getElementById('countdown');
+        const overlay = document.getElementById('celebration-overlay');
+        const mainContent = document.getElementById('main-content');
 
+        const timer = setInterval(() => {
+            timeLeft--;
+            countdownElem.innerText = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                closeCelebration();
+            }
+        }, 1000);
+
+        function closeCelebration() {
+            overlay.style.transition = "1s";
+            overlay.style.opacity = "0";
+            setTimeout(() => {
+                overlay.style.display = "none";
+                mainContent.classList.add('show-site');
+            }, 1000);
+        }
+
+        // ২. আতশবাজি (Fireworks) ইঞ্জিন
+        const canvas = document.getElementById('fireworks-canvas');
+        const ctx = canvas.getContext('2d');
+        const sound = document.getElementById('firework-sound');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('click', () => { sound.play().catch(()=>{}); });
+
+        class Firework {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height;
+                this.sx = Math.random() * 3 - 1.5;
+                this.sy = Math.random() * -3 - 7;
+                this.size = 2;
+                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                this.exploded = false;
+            }
+            update() {
+                this.x += this.sx;
+                this.y += this.sy;
+                this.sy += 0.1;
+                if (this.sy >= 0 && !this.exploded) {
+                    this.exploded = true;
+                    this.explode();
+                }
+            }
+            explode() {
+                if(timeLeft > 0) sound.cloneNode(true).play();
+                for (let i = 0; i < 50; i++) {
+                    particles.push(new Particle(this.x, this.y, this.color));
+                }
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x; this.y = y; this.color = color;
+                this.sx = Math.random() * 6 - 3;
+                this.sy = Math.random() * 6 - 3;
+                this.life = 100;
+            }
+            update() {
+                this.x += this.sx; this.y += this.sy;
+                this.life -= 2;
+            }
+            draw() {
+                ctx.globalAlpha = this.life / 100;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        const fireworks = [];
+        const particles = [];
+
+        function animate() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            if (Math.random() < 0.05) fireworks.push(new Firework());
+
+            fireworks.forEach((f, i) => {
+                f.update(); f.draw();
+                if (f.exploded) fireworks.splice(i, 1);
+            });
+
+            particles.forEach((p, i) => {
+                p.update(); p.draw();
+                if (p.life <= 0) particles.splice(i, 1);
+            });
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 </html>
