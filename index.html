@@ -6,9 +6,6 @@
     <title>NAZIM 69x | Official</title>
     
     <link rel="icon" type="image/png" href="profile.jpg">
-    <link rel="apple-touch-icon" href="profile.jpg">
-    <meta property="og:image" content="profile.jpg">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Noto+Sans+Bengali:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
@@ -29,6 +26,7 @@
         .btn-update { background: #222; color: #00ff00; border: 1px solid #00ff00; }
         .btn-privacy { background: #222; color: #ff00ff; border: 1px solid #ff00ff; }
 
+        /* পপ-আপ সেটিংস */
         .modal {
             display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
             background: #111; padding: 25px; border-radius: 15px; border: 2px solid var(--neon);
@@ -37,33 +35,41 @@
         }
         .close-btn { background: red; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; margin-top: 15px; display: block; width: fit-content; margin-left: auto; font-weight: bold; }
 
-        /* আপডেট লেয়ার - ক্লিন ডিজাইন */
+        /* আপডেট বক্স ডিজাইন */
         .update-box { background: #1a1a1a; padding: 18px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #333; }
-        
         .update-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #444; padding-bottom: 8px; }
-        
-        .title-text { font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 15px; color: var(--neon); letter-spacing: 0.5px; }
-        .date-text { font-size: 12px; color: #aaa; background: #222; padding: 2px 8px; border-radius: 4px; font-family: 'Roboto', sans-serif; }
-        
+        .title-text { font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 15px; color: var(--neon); }
+        .date-text { font-size: 12px; color: #aaa; background: #222; padding: 2px 8px; border-radius: 4px; }
         .update-content { font-size: 15px; line-height: 1.6; color: #eee; margin: 12px 0; }
-        
-        .next-update { color: #ff4444; font-size: 13px; font-weight: bold; display: flex; align-items: center; gap: 5px; margin-top: 10px; font-family: 'Roboto', sans-serif; }
-        .next-update::before { content: '●'; animation: blink 1s infinite; }
+        .next-update { color: #ff4444; font-size: 13px; font-weight: bold; font-family: 'Roboto'; }
 
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
-
+        /* প্রোফাইল ও পরিচিতি */
         .intro-left { text-align: left; padding: 25px; border-left: 5px solid var(--neon); margin: 30px 5%; background: #0e0e0e; border-radius: 0 10px 10px 0; }
         .hero { padding: 40px 5%; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .profile-img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--neon); box-shadow: 0 0 25px var(--neon); margin-bottom: 20px; object-fit: cover; }
-        
         .socials { display: flex; gap: 20px; margin-top: 20px; }
-        .socials a { font-size: 30px; color: white; }
+        .socials a { font-size: 30px; color: white; transition: 0.3s; }
+        .socials a:hover { color: var(--neon); transform: scale(1.2); }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 20px 5%; }
-        .video-box { background: #111; border-radius: 15px; overflow: hidden; border: 1px solid #222; }
+        /* ভিডিও সেকশন ডিজাইন */
+        .video-section { padding: 40px 5%; text-align: center; }
+        .section-title { font-family: 'Orbitron'; color: var(--neon); margin-bottom: 30px; border-bottom: 2px solid var(--neon); display: inline-block; padding-bottom: 5px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .video-box { background: #111; border-radius: 15px; overflow: hidden; border: 1px solid #222; position: relative; transition: 0.3s; }
+        .video-box:hover { border-color: var(--neon); box-shadow: 0 0 15px rgba(0, 210, 255, 0.2); }
         iframe { width: 100%; aspect-ratio: 9/16; border: none; }
 
-        @media (max-width: 600px) { header { flex-direction: column; gap: 10px; } .update-title-row { flex-direction: column; align-items: flex-start; gap: 5px; } }
+        /* কামিং সুন কার্ড */
+        .coming-soon-card { 
+            aspect-ratio: 9/16; display: flex; flex-direction: column; align-items: center; 
+            justify-content: center; background: linear-gradient(45deg, #111, #1a1a1a); 
+            color: #444; font-family: 'Orbitron'; font-size: 14px; text-transform: uppercase;
+            border: 1px dashed #333; border-radius: 15px;
+        }
+        .coming-soon-card i { font-size: 40px; margin-bottom: 15px; color: #222; }
+
+        @media (max-width: 600px) { header { flex-direction: column; gap: 10px; } }
     </style>
 </head>
 <body>
@@ -79,13 +85,12 @@
 
     <div id="contactModal" class="modal">
         <h2 style="color:var(--neon); font-family: 'Orbitron';">Contact Me</h2>
-        <p style="font-size: 16px;">Email: <b>ffnazim560@gmail.com</b></p>
+        <p>Email: <b>ffnazim560@gmail.com</b></p>
         <button class="close-btn" onclick="closeModal('contactModal')">Close</button>
     </div>
 
     <div id="updateModal" class="modal">
         <h2 style="color:#00ff00; font-family:'Orbitron'; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px;">UPDATE CENTER</h2>
-        
         <div class="update-box">
             <div class="update-title-row">
                 <span class="title-text">Website update details</span>
@@ -94,7 +99,6 @@
             <p class="update-content">নতুন ইউজার ইন্টারফেস এবং স্পিড অপ্টিমাইজেশন করা হয়েছে।</p>
             <div class="next-update">Next update coming soon.</div>
         </div>
-        
         <div class="update-box" style="border-left: 5px solid #ff00ff;">
             <div class="update-title-row">
                 <span class="title-text" style="color: #ff00ff;">Privacy Details</span>
@@ -103,22 +107,15 @@
             <p class="update-content">আপনাদের সুরক্ষার জন্য প্রাইভেসী সিস্টেম আরও শক্তিশালী করা হয়েছে।</p>
             <div class="next-update">Next update coming soon.</div>
         </div>
-
         <button class="close-btn" onclick="closeModal('updateModal')">Close</button>
     </div>
 
     <div id="privacyModal" class="modal">
         <h2 style="color:#ff00ff; font-family:'Orbitron'">SECURITY & PRIVACY</h2>
-        <p style="color: #00ff00; font-weight: bold; font-family: 'Roboto';">Security Version: 1.1</p>
         <p style="font-size: 15px; line-height: 1.6; color: #eee;">
-            আপনাদের সুরক্ষার জন্য আমাদের সংস্থা <b>NAZIM 69x Security</b> সবসময় সতর্ক। আমাদের সিকিউরিটি সিস্টেম প্রতিদিন আপডেট হচ্ছে যাতে আপনাদের ডাটা এবং ব্রাউজিং অভিজ্ঞতা ১০০% নিরাপদ থাকে।
+            আপনাদের সুরক্ষার জন্য আমাদের সংস্থা <b>NAZIM 69x Security</b> সবসময় সতর্ক। আপনাদের ডাটা এবং ব্রাউজিং অভিজ্ঞতা ১০০% নিরাপদ রাখতে আমাদের সিকিউরিটি সিস্টেম প্রতিদিন আপডেট করা হয়।
         </p>
         <button class="close-btn" onclick="closeModal('privacyModal')">Close</button>
-    </div>
-
-    <div class="intro-left">
-        <h3 style="font-family:'Orbitron'; color:var(--neon)">পরিচিতি</h3>
-        <p style="font-size: 16px;">আমি <b>মোঃ নাজিম ইসলাম</b>। আপনারা আমাকে চেনেন <b>NAZIM 69x</b> নামে। আমি বর্তমানে <b>TikTok</b>-এ অনেক বেশি ভাইরাল এবং আপনাদের ভালোবাসায় এগিয়ে যাচ্ছি।</p>
     </div>
 
     <section class="hero">
@@ -131,13 +128,58 @@
         </div>
     </section>
 
-    <div class="grid">
-        <div class="video-box"><iframe src="https://www.tiktok.com/embed/7589163619233926420"></iframe></div>
-        <div class="video-box"><iframe src="https://www.tiktok.com/embed/7583955549369421077"></iframe></div>
+    <div class="intro-left">
+        <h3 style="font-family:'Orbitron'; color:var(--neon)">পরিচিতি</h3>
+        <p>আমি <b>মোঃ নাজিম ইসলাম</b>। আপনারা আমাকে চেনেন <b>NAZIM 69x</b> নামে। আমি বর্তমানে <b>TikTok</b>-এ অনেক বেশি ভাইরাল এবং আপনাদের ভালোবাসায় এগিয়ে যাচ্ছি।</p>
     </div>
 
-    <footer style="padding: 20px; text-align: center; color: #555; font-size: 12px;">
-        <p>&copy; 2026 NAZIM 69x | Secured by NAZIM 69x Security System</p>
+    <section class="video-section">
+        <h2 class="section-title">TikTok Video List</h2>
+        <div class="grid">
+            <div class="video-box">
+                <iframe src="https://www.tiktok.com/embed/7589163619233926420"></iframe>
+            </div>
+            <div class="video-box">
+                <div class="coming-soon-card">
+                    <i class="fab fa-tiktok"></i>
+                    <span>Coming Soon</span>
+                </div>
+            </div>
+            <div class="video-box">
+                <div class="coming-soon-card">
+                    <i class="fab fa-tiktok"></i>
+                    <span>Coming Soon</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="video-section" style="background: rgba(255, 255, 255, 0.02);">
+        <h2 class="section-title" style="color: #ff0000; border-color: #ff0000;">YouTube Video List</h2>
+        <div class="grid">
+            <div class="video-box">
+                <div class="coming-soon-card">
+                    <i class="fab fa-youtube"></i>
+                    <span style="color: #555;">Coming Soon</span>
+                </div>
+            </div>
+            <div class="video-box">
+                <div class="coming-soon-card">
+                    <i class="fab fa-youtube"></i>
+                    <span style="color: #555;">Coming Soon</span>
+                </div>
+            </div>
+            <div class="video-box">
+                <div class="coming-soon-card">
+                    <i class="fab fa-youtube"></i>
+                    <span style="color: #555;">Coming Soon</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 30px; text-align: center; color: #444; font-size: 12px; border-top: 1px solid #111;">
+        <p>&copy; 2026 NAZIM 69x | Secured by NAZIM 69x Security</p>
     </footer>
 
     <script>
